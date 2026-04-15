@@ -1,9 +1,15 @@
+package logic.beans;
+
+import logic.utils.Notification_Types;
+import logic.utils.User_Types;
+
 public class Bean_Notification {
 
     private String notified_name;
     private String notifier_name;
     private Integer notification_id;
-    // usertype e notification_type dalle enumerazioni. Teoricamente vanno importate
+    private User_Types user_types;
+    private Notification_Types notification_types;
 
     // SETTERS
 
@@ -19,34 +25,38 @@ public class Bean_Notification {
         this.notification_id = notification_ID;
     }
 
-    // public void setNotificationType(Notification_types type_notif){
-    //  this.type_notif = type_notif;
-    // }
+    public void setNotificationType(Notification_Types type_notif){
+            this.notification_types = type_notif;
+    }
 
-    // public void setUserType(UserTypes type_user){
-    //    //  this.type_user = type_user;
-    //    // }
+    public void setUserType(User_Types type_user){
+          this.user_types = type_user;
+     }
 
     //GETTERS
 
-    public void getNotifier_name() {
+    public String getNotifier_name() {
         return this.notifier_name;
     }
-    public void getNotified_name() {
+    public String getNotified_name() {
         return this.notified_name;
     }
 
-    public void getNotification_ID() {
+    public int getNotification_ID() {
         return this.notification_id;
     }
 
-    // public void getNotificationType(){
-    //    // return this.type_notif;
-    //    // }
+    public Notification_Types getNotificationType() {
+        return this.notification_types;
+    }
 
-    // public void getUserType(){
-    //    // return this.type_user;
-    //    // }
+    public User_Types getUserType(){
+         return this.user_types;
+    }
 }
+
+
+
+
 
 
