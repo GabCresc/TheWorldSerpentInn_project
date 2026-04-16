@@ -1,0 +1,94 @@
+package logic.DAO;
+
+import logic.models.Model_Campaign;
+import logic.utils.SingletonDBSession;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map; //mappa chiavi a valori, rappresentando una collezione di coppie univoche dove ogni chiave può associarsi al massimo a un solo valore: keyset, values, entryset
+import java.util.logging.Level;
+
+
+// Cosa registrare (logging):
+// - Inizio/fine dell'applicazione. Abbiamo bisogno di sapere se l'applicazione è veramente iniziata e terminata come previsto.
+// - Problemi di sicurezza. Qui sarebbe utile registrare i tentativi di indovinare la password di qualcuno, le istanze in cui gli amministratori accedono, ecc.
+// - Determinati stati dell'applicazione . Ad esempio, la transizione da uno stato all'altro in un processo aziendale.
+// - Determinate informazioni di debug insieme al livello di registro corrispondente.
+// - Alcuni script SQL. Ci sono casi reali in cui ciò è necessario. Ma ancora una volta, regolando abilmente i livelli del registro, puoi ottenere risultati eccellenti.
+// - I thread in esecuzione possono essere registrati quando si verifica che le cose funzionino correttamente.
+
+
+public class CampaignDAO {
+
+    // apro la connessione con il database per recuperare le campagne disponibili
+    public List<Model_Campaign> retrieveMyCampaigns(){
+        List<Model_Campaign> list = new ArrayList<>();
+
+        try(Connection conn = SingletonDBSession.startConnection()){
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM campaign"); // eventualmente tramite una JOIN recuperare nomi DM e conteggio player
+                while(rs.next()){
+                    Model_Campaign camp = new Model_Campaign();
+                    camp.setCampId(rs.getInt("idCampaign"));
+                    camp.setCampName(rs.getString("name"));
+                    camp.setMaxNumberOfPlayers(rs.getInt("max_players"));
+                    camp.setDmId(rs.getInt("dm_id"));
+                    camp.setTimeSession(rs.getString("time_session"));
+                    camp.setCampMode(rs.getString("mode"));
+                    camp.setCampDay(rs.getString("day"));
+                    camp.setCampCity(rs.getString("city"), rs.getString("day"));
+
+                    list.add(camp);
+                }
+            } catch (SQLException e) { e.printStackTrace(); }
+            return list;
+        }
+
+// metodo per registrare la richiesta del player nel database
+    public void insertRequest(int campaignID, int playerID){
+            try(Connection conn = SingletonDBSession.startConnection()){
+                PreparedStatement pstatement = conn.prepareStatement("INSERT INTO campaign_request (idCampaign, id_player, status) VALUES (?,?, 'WAITING')");
+                // ? è un placeholder per il PreparedStatement, più sicuro di un semplice Statement
+                pstatement.setInt(1, campaignID); //1 indica l'indice di colonna
+                pstatement.setInt(2, playerID);
+                pstatement.executeUpdate();
+                // executeUpdate() è un metodo della classe Statement utilizzato per eseguire istruzioni DML (INSERT, UPDATE, DELETE) o DDL,
+                // e restituisce un intero che indica il numero di righe interessate dalla modifica
+            }catch (SQLException e) { e.printStackTrace(); }
+    }
+
+    // Prepared Statement fa sì che, nel momento in cui è necessario ripetere la query più volte, lo statement sia già preparato
+// senza che il database debba analizzare nuovamente tutto e preparare uno statement. Se la query avviene ad hoc, poco beneficio
+//  protegge contro le SQL injection (attacchi informatici consistenti nell'inserire stringhe in input che non vengono controllate con Statement)
+// Quindi Statement va bene per i comandi ALTER, CREATE, GRANT...
+
+    public List<Integer> retrieveListofWaitingPlayers (int campaignID) throws SQLException {
+        List<Integer> list_id = new ArrayList<>();
+
+        try (Connection conn = SingletonDBSession.startConnection()) {
+            PreparedStatement pstatement = conn.prepareStatement("SELECT id_player FROM campaign_request WHERE id_player = ? and status = 'WAITING' ");
+            // WHERE viene utilizzata per selezionare specifici record che soddisfano una certa condizione
+            // ? rappresenta un placeholder poi sostituito dal valore specifico
+            pstatement.setInt(1, campaignID);
+            ResultSet rs = pstatement.executeQuery();
+            // utilizziamo executeQuery() senza parametri perché stiamo eseguendo o una procedura registrata che restituisce un singolo result set
+            // oppure per runnare SELECT queries che non richiedono valori di input dinamici DA CONTROLLARE
+
+            while (rs.next()) {
+                list_id.add(rs.getInt("id_player"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list_id;
+    }
+}
+
+
+
+
+
+
