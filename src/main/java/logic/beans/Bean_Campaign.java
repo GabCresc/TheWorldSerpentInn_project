@@ -19,10 +19,6 @@ public class Bean_Campaign {
         private List<UserBean> waitingPlayers = new ArrayList<>();
         private List<UserBean> acceptedPlayers = new ArrayList<>();
 
-
-// Il metodo getAcceptedPlayers restituisce la lista dei giocatori già accettati, permettendo di verificare se ci sono posti
-    // ancora disponibili. Ciò è utile per verificare se è possibile mandare una richiesta di partecipazione
-
     public List<UserBean> getAcceptedPlayers() {
         return this.acceptedPlayers;
     }
