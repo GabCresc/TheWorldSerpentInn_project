@@ -1,0 +1,37 @@
+SQL EXCEPTION:  /*An exception that provides information on a database access error or other errors.
+
+                   Each SQLException provides several kinds of information:
+
+                  - a string describing the error. This is used as the Java Exception message, available via the method getMessage.
+                  -  a "SQLstate" string, which follows either the XOPEN SQLstate conventions or the SQL:2003 conventions.
+                    The values of the SQLState string are described in the appropriate spec.
+                   The DatabaseMetaData method getSQLStateType can be used to discover whether the driver returns
+                   the XOPEN type or the SQL:2003 type.
+                   an integer error code that is specific to each vendor. Normally this will be the actual
+                   error code returned by the underlying database.
+                  - a chain to a next Exception. This can be used to provide additional error information.
+                   the causal relationship, if any for this SQLException.*/
+
+metodo enum.valueOf: The Enum.valueOf() method is a static method that retrieves an enum constant based
+on its name as a string
+
+import java.util.Map: mappa chiavi a valori, rappresentando una collezione di coppie univoche
+dove ogni chiave può associarsi al massimo a un solo valore: keyset, values, entryset
+
+import java.util.logging.Level:
+// Cosa registrare (logging):
+// - Inizio/fine dell'applicazione. Abbiamo bisogno di sapere se l'applicazione è veramente iniziata e terminata come previsto.
+// - Problemi di sicurezza. Qui sarebbe utile registrare i tentativi di indovinare la password di qualcuno, le istanze in cui gli amministratori accedono, ecc.
+// - Determinati stati dell'applicazione . Ad esempio, la transizione da uno stato all'altro in un processo aziendale.
+// - Determinate informazioni di debug insieme al livello di registro corrispondente.
+// - Alcuni script SQL. Ci sono casi reali in cui ciò è necessario. Ma ancora una volta, regolando abilmente i livelli del registro, puoi ottenere risultati eccellenti.
+// - I thread in esecuzione possono essere registrati quando si verifica che le cose funzionino correttamente.
+
+Prepared Statement:
+// Prepared Statement fa sì che, nel momento in cui è necessario ripetere la query più volte, lo statement sia già preparato
+// senza che il database debba analizzare nuovamente tutto e preparare uno statement. Se la query avviene ad hoc, poco beneficio
+//  protegge contro le SQL injection (attacchi informatici consistenti nell'inserire stringhe in input che non vengono controllate con Statement)
+// Quindi Statement va bene per i comandi ALTER, CREATE, GRANT...
+
+
+
