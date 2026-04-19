@@ -1,0 +1,14 @@
+package com.worldserpentinn.controller.Factory;
+
+import com.worldserpentinn.model.Notification;
+import com.worldserpentinn.model.Local_Notification;
+import com.worldserpentinn.model.Server_Notification;
+
+public class NotificationFactory {
+    public Notification CreateLocalNotification() {
+        return new Local_Notification();
+    }
+    public Notification CreateServerNotification() {
+        return new Server_Notification();
+    }
+}
