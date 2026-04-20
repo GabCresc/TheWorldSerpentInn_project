@@ -1,8 +1,10 @@
 package com.worldserpentinn.controller.Factory;
 
-import com.worldserpentinn.model.Notification;
-import com.worldserpentinn.model.Local_Notification;
-import com.worldserpentinn.model.Server_Notification;
+import logic.model.Notification;
+import logic.model.Local_Notification;
+import logic.model.Server_Notification;
+import logic.utils.enums.NotificationTypes;
+import logic.utils.enums.UserTypes;
 
 public class NotificationFactory {
     public Notification CreateLocalNotification() {
