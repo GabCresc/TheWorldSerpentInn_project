@@ -1,4 +1,4 @@
-package com.worldserpentinn.controller.Factory;
+package logic.controller.Factory;
 
 import logic.model.Notification;
 import logic.model.Local_Notification;
