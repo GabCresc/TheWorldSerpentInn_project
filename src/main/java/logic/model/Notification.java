@@ -1,4 +1,7 @@
-package com.worldserpentinn.model;
+package logic.model;
+
+import logic.utils.enums.NotificationTypes;
+import logic.utils.enums.UserTypes;
 
 public interface Notification {
     String getNotificationType();
