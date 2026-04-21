@@ -1,15 +1,15 @@
 package logic.beans;
 
-import logic.utils.Notification_Types;
-import logic.utils.User_Types;
+import logic.utils.enums.NotificationTypes;
+import logic.utils.enums.UserTypes;
 
 public class Bean_Notification {
 
     private String notified_name;
     private String notifier_name;
     private Integer notification_id;
-    private User_Types user_types;
-    private Notification_Types notification_types;
+    private UserTypes user_types;
+    private NotificationTypes notification_types;
 
     // SETTERS
 
@@ -25,11 +25,11 @@ public class Bean_Notification {
         this.notification_id = notification_ID;
     }
 
-    public void setNotificationType(Notification_Types type_notif){
+    public void setNotificationType(NotificationTypes type_notif){
             this.notification_types = type_notif;
     }
 
-    public void setUserType(User_Types type_user){
+    public void setUserType(UserTypes type_user){
           this.user_types = type_user;
      }
 
@@ -46,14 +46,11 @@ public class Bean_Notification {
         return this.notification_id;
     }
 
-    public Notification_Types getNotificationType() {
+    public NotificationTypes getNotificationType() {
         return this.notification_types;
     }
 
-    public User_Types getUserType(){
+    public UserTypes getUserType(){
          return this.user_types;
     }
 }
-
-
-
