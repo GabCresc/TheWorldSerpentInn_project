@@ -1,6 +1,6 @@
 package logic.utils;
 
-public enum User_Types {
+public enum UserTypes {
     PLAYER,
     DM,
 }
