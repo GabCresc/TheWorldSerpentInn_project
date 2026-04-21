@@ -1,9 +1,9 @@
-package logic.models;
+package logic.model;
 
-import logic.beans.Bean_Campaign;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 public class Model_Campaign {
     private String campaignName;
@@ -16,8 +16,8 @@ public class Model_Campaign {
     private Integer campaignID;
     private Integer dmID;
     private String mode;
-    private List<UserBean> waitingPlayers = new ArrayList<>(); // ??
-    private List<UserBean> acceptedPlayers = new ArrayList<>();
+    private List<User> waitingPlayers = new ArrayList<>(); // ?? //User o UserBean?
+    private List<User> acceptedPlayers = new ArrayList<>();
 
    /* public Model_Campaign(Bean_Campaign Campbean) {
         this.campaignID = Campbean.getCampId();
@@ -159,9 +159,5 @@ public class Model_Campaign {
         this.maxNumberOfPlayers = maxNumberOfPlayers;
     }
 }
-
-
-
-
 
 
