@@ -1,6 +1,6 @@
 package logic.utils;
 
-public enum Notification_Types {
+public enum NotificationTypes {
     REQUEST_PARTECIPATION,
     ACCEPT_PARTECIPATION,
     REMINDER,
