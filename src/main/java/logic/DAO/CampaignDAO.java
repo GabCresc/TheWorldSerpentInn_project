@@ -1,14 +1,12 @@
 package logic.DAO;
 
-import logic.models.Model_Campaign;
+import logic.model.Model_Campaign;
 import logic.utils.SingletonDBSession;
 import java.sql.SQLException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
 
 // VERIFICARE CHE I FINALLY SIANO EFFETTIVAMENTE NECESSARI
 
@@ -44,7 +42,7 @@ public class CampaignDAO {
 // metodo per registrare la richiesta del player nel database
     public void insertRequest(int campaignID, int playerID){
             try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-                PreparedStatement pstatement = conn.prepareStatement("INSERT INTO campaign_request (idCampaign, id_player, status) VALUES (?,?, 'WAITING')");
+                PreparedStatement pstatement = conn.prepareStatement("INSERT INTO campaign_request (campaignID, playerID, status) VALUES (?,?, 'WAITING')");
                 pstatement.setInt(1, campaignID); //1 indica l'indice di colonna
                 pstatement.setInt(2, playerID);
                 pstatement.executeUpdate();
@@ -58,7 +56,7 @@ public class CampaignDAO {
         List<Integer> list_id = new ArrayList<>();
 
         try (Connection conn = SingletonDBSession.getInstance().startConnection()) {
-            PreparedStatement pstatement = conn.prepareStatement("SELECT id_player FROM campaign_request WHERE id_player = ? and status = 'WAITING' ");
+            PreparedStatement pstatement = conn.prepareStatement("SELECT playerID FROM campaign_request WHERE playerID = ? and status = 'WAITING' ");
             // WHERE viene utilizzata per selezionare specifici record che soddisfano una certa condizione
             // ? rappresenta un placeholder poi sostituito dal valore specifico
             pstatement.setInt(1, campaignID);
@@ -66,7 +64,7 @@ public class CampaignDAO {
             // utilizziamo executeQuery() senza parametri perché stiamo eseguendo o una procedura registrata che restituisce un singolo result set
             // oppure per runnare SELECT queries che non richiedono valori di input dinamici DA CONTROLLARE
             while (rs.next()) {
-                list_id.add(rs.getInt("id_player"));
+                list_id.add(rs.getInt("playerID"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
