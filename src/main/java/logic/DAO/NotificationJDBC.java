@@ -1,11 +1,9 @@
 package logic.DAO;
 
-
 import logic.model.Notification;
 import logic.utils.enums.NotificationTypes;
 import logic.utils.SingletonDBSession;
 import logic.controllers.factory.NotificationFactory;
-import logic.utils.enums.Notification_Kind;
 import lombok.extern.java.Log;
 
 import java.sql.Connection;
@@ -18,17 +16,15 @@ import java.util.logging.Level; // suggerito da SonarCloud
 
 @Log
 public class NotificationJDBC implements NotificationDAO {
-    private NotificationFactory notFactory;
-
-
+    private NotificationFactory notiFactory;
 
     public NotificationJDBC(){
-        notFactory = new NotificationFactory(); // istanziamo l'istanza concreta di factory
+        notiFactory = new NotificationFactory(); // istanziamo l'istanza concreta di factory
     }
     @Override
 
     public void addNotification(NotificationTypes type, String notifier_name, String notified_name,
-                                int notification_id, int user_id, int campaign_id) throws SQLException {
+                                int notification_id, int user_id, int campaign_id) {
         try(Connection conn = SingletonDBSession.getInstance().startConnection()){
             PreparedStatement pstat = conn.prepareStatement("INSERT INTO notification (notificationID, notified_name, notifier_name, type, userID, campaignID)");
             pstat.setInt(1, notification_id);
@@ -63,16 +59,15 @@ public class NotificationJDBC implements NotificationDAO {
                 int notifcampaignID = rs.getInt("campaignID");
 
                 NotificationTypes typ = NotificationTypes.valueOf(notiftype);
-                Notification_Kind kind = typ.getKind();
 
-                Notification msg;
+                Notification msg = notiFactory.CreateNotification(notifID, notified, notifier, typ, user_id, notifcampaignID);
 
-                if(kind == Notification_Kind.LOCAL){
-                    msg = notFactory.CreateLocalNotification(); // però dovrebbe prendere come param kind o type per sapere che il type
+                /*if(kind == Notification_Kind.LOCAL){
+                    msg = notiFactory.CreateLocalNotification(); // però dovrebbe prendere come param kind o type per sapere che il type
                 }else{
                     // notifica di tipo server
-                    msg = notFactory.CreateServerNotification();
-                }
+                    msg = notiFactory.CreateServerNotification();
+                }*/
 
                 notif_list.add(msg);
 
