@@ -1,6 +1,6 @@
 package logic.DAO;
 
-//import logic.controllers.factory.NotificationFactory;
+
 import logic.model.Notification;
 import logic.utils.enums.NotificationTypes;
 import logic.utils.SingletonDBSession;
