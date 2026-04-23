@@ -3,6 +3,7 @@ package logic.beans;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import logic.utils.enums.Mode;
 
 public class Bean_Campaign {
 
@@ -15,9 +16,13 @@ public class Bean_Campaign {
         private Integer maxNumberOfPlayers;
         private Integer campaignID;
         private Integer dmID;
-        private String mode;
+        private Mode mode;
         private List<UserBean> waitingPlayers = new ArrayList<>();
         private List<UserBean> acceptedPlayers = new ArrayList<>();
+
+
+// Il metodo getAcceptedPlayers restituisce la lista dei giocatori già accettati, permettendo di verificare se ci sono posti
+    // ancora disponibili. Ciò è utile per verificare se è possibile mandare una richiesta di partecipazione
 
     public List<UserBean> getAcceptedPlayers() {
         return this.acceptedPlayers;
@@ -64,7 +69,7 @@ public class Bean_Campaign {
         this.timeSession = timeSession; //da espandere
     }
 
-    public void SetCampMode(String mode){
+    public void SetCampMode(Mode mode){
         this.mode = mode;
     }
 
@@ -107,7 +112,7 @@ public class Bean_Campaign {
         return this.dmID;
     }
 
-    public String getCampMode(){
+    public Mode getCampMode(){
         return this.mode;
     }
 
