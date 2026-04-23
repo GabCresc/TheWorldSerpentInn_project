@@ -3,6 +3,7 @@ package logic.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import logic.utils.enums.Mode;
 
 
 public class Model_Campaign {
@@ -15,7 +16,7 @@ public class Model_Campaign {
     private Integer maxNumberOfPlayers;
     private Integer campaignID;
     private Integer dmID;
-    private String mode;
+    private Mode mode;
     private List<User> waitingPlayers = new ArrayList<>(); // ?? //User o UserBean?
     private List<User> acceptedPlayers = new ArrayList<>();
 
@@ -103,7 +104,7 @@ public class Model_Campaign {
         return this.dmID;
     }
 
-    public String getCampMode() {
+    public Mode getCampMode() {
         return this.mode;
     }
 
@@ -143,7 +144,7 @@ public class Model_Campaign {
         this.timeSession = timeSession; //da espandere
     }
 
-    public void setCampMode(String mode) {
+    public void setCampMode(Mode mode) {
         this.mode = mode;
     }
 
