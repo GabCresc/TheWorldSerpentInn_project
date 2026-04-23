@@ -3,7 +3,6 @@ package logic.DAO;
 import logic.model.Notification;
 import logic.utils.enums.NotificationTypes;
 import logic.utils.SingletonDBSession;
-import logic.controllers.factory.NotificationFactory;
 import lombok.extern.java.Log;
 
 import java.sql.Connection;
@@ -12,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.*;
 import java.util.logging.Level; // suggerito da SonarCloud
+import logic.controllers.factory.NotificationFactory;
 
 
 @Log
