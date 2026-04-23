@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-import logic.controllers.factory.NotificationFactory;
 import logic.utils.enums.Notification_Kind;
 import lombok.extern.java.Log;
 import java.util.logging.Level; // suggerito da SonarCloud
@@ -17,6 +16,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import logic.utils.enums.NotificationTypes;
 import logic.model.Notification;
 import java.util.ArrayList;
+import logic.controllers.factory.NotificationFactory;
 
 @Log
 public class NotificationCSV implements NotificationDAO {
