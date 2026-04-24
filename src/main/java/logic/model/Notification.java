@@ -1,20 +1,19 @@
-package logic.model;
-
-import logic.utils.enums.NotificationTypes;
-import logic.utils.enums.UserTypes;
+package com.worldserpentinn.model;
 
 public interface Notification {
-    Notification_Types getNotificationType();
-    String getNotifier_Name();
-    String getNotified_Name();
+    NotificationTypes getNotificationType();
+    int getNotifier_id();
+    int getNotified_id();
     int getNotification_ID();
-    User_Types getUserType();
-    int getUser_ID();
+    UserTypes getNotifierType();
+    UserTypes getNotifiedType();
+    int getCampaign_id();
 
-    void setNotificationType(Notification_Types notification_type);
-    void setNotifier_Name(String notifier_name);
-    void setNotified_Name(String notified_name);
+    void setNotificationType(NotificationTypes notification_type);
+    void setNotifier_id(int notifier_id);
+    void setNotified_id(int notified_id);
     void setNotification_ID(int notification_ID);
-    void setUserType(User_Types user_type);
-    void setUser_ID(int user_ID)
+    void setNotifierType(UserTypes notifier_type);
+    void setNotifiedType(UserTypes notified_type);
+    void setCampaign_id(int campaign_id);
 }
