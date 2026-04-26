@@ -3,7 +3,10 @@ package logic.beans;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import logic.model.Model_Campaign;
 import logic.utils.enums.Mode;
+import logic.beans.Bean_User;
 
 public class Bean_Campaign {
 
@@ -17,29 +20,29 @@ public class Bean_Campaign {
         private Integer campaignID;
         private Integer dmID;
         private Mode mode;
-        private List<UserBean> waitingPlayers = new ArrayList<>();
-        private List<UserBean> acceptedPlayers = new ArrayList<>();
+        private List<Bean_User> waitingPlayers = new ArrayList<>();
+        private List<Bean_User> acceptedPlayers = new ArrayList<>();
 
-
-// Il metodo getAcceptedPlayers restituisce la lista dei giocatori già accettati, permettendo di verificare se ci sono posti
-    // ancora disponibili. Ciò è utile per verificare se è possibile mandare una richiesta di partecipazione
-
-    public List<UserBean> getAcceptedPlayers() {
-        return this.acceptedPlayers;
+    public Bean_Campaign(){
+        // empty
     }
-    public boolean IsFull(){ // questo metodo controlla se la campagna è piena
-        return getAcceptedPlayers().size() >= this.maxNumberOfPlayers;
-    } //se è vero, disabilitare bottone per richiedere partecipazione/inviare una notifica
 
-    public String getNumberSeats() { //metodo per stampare a schermo il numero di giocatori (necessario?)
-        return getAcceptedPlayers() + "/" + this.maxNumberOfPlayers + " giocatori accettati";
+    public Bean_Campaign(Model_Campaign model){
+        this.campaignID = model.getCampId();
+        this.campaignName = model.getCampName();
+        this.timeSession = model.getCampTimeSession();
+        this.date = model.getCampDate();
+        this.city = model.getCampCity();
+        this.DM = model.getCampDM();
+        this.maxNumberOfPlayers = model.getMaxPlayers();
+        this.dmID = model.getCampDMID();
+        this.mode = model.getCampMode();
     }
 
     // SETTERS
     public void setCampId(int campaignId){
         this.campaignID = campaignId;
     }
-
     public void setCampName(String campaignName){ /*throws InvalidValueException, TextTooLongException {
     if(eventName == null || eventName.equalsIgnoreCase("")) {
         throw new InvalidValueException("Please insert a valid event name");
@@ -49,72 +52,47 @@ public class Bean_Campaign {
     }*/
         this.campaignName = campaignName;
     }
-
     public void setDmId(int dmID){
         this.dmID = dmID;
     }
-
     public void setDM(String DM){
         this.DM = DM;
     }
-
-    public void setCampDate(String date){ /*throws InvalidValueException {
-    if(city == null){
-        throw new InvalidValueException("Please insert a valid city");
-    }*/
-        this.date = date;
-    }
-
+    public void setCampDate(String date){this.date = date;}
     public void setTimeSession(String timeSession){
         this.timeSession = timeSession; //da espandere
     }
-
-    public void SetCampMode(Mode mode){
-        this.mode = mode;
-    }
-
-    public void SetCampDay(String day){
-        this.day = day;
-    }
-
-    public void SetCampDMId (int dmID){
-        this.dmID = dmID;
-    }
-
+    public void SetCampMode(Mode mode){this.mode = mode;}
+    public void SetCampDay(String day){this.day = day;}
+    public void SetCampDMId (int dmID){this.dmID = dmID;}
 
 // GETTERS
 
-    public int getCampId(){
-        return this.campaignID;
-    }
+    // Il metodo getAcceptedPlayers restituisce la lista dei giocatori già accettati, permettendo di verificare se ci sono posti
+    // ancora disponibili. Ciò è utile per verificare se è possibile mandare una richiesta di partecipazione
 
-    public String getCampName(){
-        return this.campaignName;
-    }
+    public List<Bean_User> getAcceptedPlayers() {return this.acceptedPlayers;}
 
-    public String getCampDM(){
-        return this.DM;
-    }
+    public boolean IsFull(){return getAcceptedPlayers().size() >= this.maxNumberOfPlayers;}
+    //se è vero, disabilitare bottone per richiedere partecipazione/inviare una notifica
 
-    public String getCampDate(){
-        return this.date;
-    }
+    public String getNumberSeats() {return getAcceptedPlayers() + "/" + this.maxNumberOfPlayers + " giocatori accettati";}
 
-    public String getCampTimeSession(){
-        return this.timeSession;
-    }
+    public int getCampId(){return this.campaignID;}
 
-    public String getCampDay(){
-        return this.day;
-    }
+    public String getCampName(){return this.campaignName;}
 
-    public int getCampDMID(){
-        return this.dmID;
-    }
+    public String getCampDM(){return this.DM;}
 
-    public Mode getCampMode(){
-        return this.mode;
-    }
+    public String getCampDate(){return this.date;}
+
+    public String getCampTimeSession(){return this.timeSession;}
+
+    public String getCampDay(){return this.day;}
+
+    public int getCampDMID(){return this.dmID;}
+
+    public Mode getCampMode(){return this.mode;}
 
     // per gestire la richiesta di partecipazione, è anche possibile mettere una campagna con 0 posti: in tal modo
     // nel momento in cui il player manda una richiesta, appare un pop up che lo informa che la campagna è piena e
@@ -122,13 +100,9 @@ public class Bean_Campaign {
 
     ///
 
-    public String getCampCity(){
-        return this.city;
-    }
+    public String getCampCity(){return this.city;}
 
-    public Integer getMaxNumberOfPlayers(){
-        return this.maxNumberOfPlayers;
-    }
+    public Integer getMaxNumberOfPlayers(){return this.maxNumberOfPlayers;}
 
 
 }
