@@ -19,27 +19,14 @@ public class Model_Campaign {
     private Mode mode;
     private List<User> waitingPlayers = new ArrayList<>(); // ?? //User o UserBean?
     private List<User> acceptedPlayers = new ArrayList<>();
-
-   /* public Model_Campaign(Bean_Campaign Campbean) {
-        this.campaignID = Campbean.getCampId();
-        this.campaignName = Campbean.getCampName();
-        this.maxNumberOfPlayers = Campbean.getMaxNumberOfPlayers();
-        this.dmID = Campbean.getCampDMID(); // da aggiungere sul MVC. Necessario?
-        this.timeSession = Campbean.getCampTimeSession();
-        this.day = Campbean.getCampDay();
-        this.mode = Campbean.getCampMode();
-        this.city = Campbean.getCampCity();
-        this.date = Campbean.getCampDate();
-        //this.DM = Campbean.getCampDM(); non necessario ho l'ID
-    }*/
-
-
+    //private int currentPlayers;
+    
     public Model_Campaign() {
     }
 
     // questo metodo controlla se la modalità è online oppure no. Ciò influenza la popolazione del campo city
-    public boolean IsModeOnline(String mode) {
-        if (Objects.equals(mode, "online")) {
+    public boolean IsModeOnline(Mode mode) {
+        if (mode == Mode.ONLINE) {
             return true; // la campagna si svolge online
         } else {
             return false;
@@ -63,7 +50,7 @@ public class Model_Campaign {
         return acceptedPlayers.contains(player) || waitingPlayers.contains(player);
     }
 
-   public void setCampCity(String city, String mode) { /*throws InvalidValueException {
+   public void setCampCity(String city, Mode mode) { /*throws InvalidValueException {
     if(city == null){
         throw new InvalidValueException("Please insert a valid city");
     }*/
@@ -107,6 +94,10 @@ public class Model_Campaign {
     public Mode getCampMode() {
         return this.mode;
     }
+
+    public int getMaxPlayers(){return this.maxNumberOfPlayers;}
+
+    public String getCampCity() { return this.city;}
 
 
     // SETTERS
@@ -160,5 +151,6 @@ public class Model_Campaign {
         this.maxNumberOfPlayers = maxNumberOfPlayers;
     }
 }
+
 
 
