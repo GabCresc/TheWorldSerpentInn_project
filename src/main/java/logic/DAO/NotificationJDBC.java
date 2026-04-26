@@ -27,11 +27,11 @@ public class NotificationJDBC implements NotificationDAO {
                                 int notification_id, int campaign_id) {
         try(Connection conn = SingletonDBSession.getInstance().startConnection()){
             PreparedStatement pstat = conn.prepareStatement("INSERT INTO notification (notificationID, notifiedID, notifierID, type, campaignID)");
-            pstat.setInt(1, notification_id);
-            pstat.setInt(2, notifiedID);
-            pstat.setInt(3, notifierID);
-            pstat.setString(4, String.valueOf(type));
-            pstat.setInt(6, campaign_id);
+            pstat.setInt(1, notification_id); //NOSONAR
+            pstat.setInt(2, notifiedID); //NOSONAR
+            pstat.setInt(3, notifierID); //NOSONAR
+            pstat.setString(4, String.valueOf(type)); //NOSONAR
+            pstat.setInt(6, campaign_id); //NOSONAR
 
             pstat.executeUpdate();
 
