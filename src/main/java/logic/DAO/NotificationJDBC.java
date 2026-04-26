@@ -23,15 +23,14 @@ public class NotificationJDBC implements NotificationDAO {
     }
     @Override
 
-    public void addNotification(NotificationTypes type, String notifier_name, String notified_name,
-                                int notification_id, int user_id, int campaign_id) {
+    public void addNotification(NotificationTypes type, int notifierID, int notifiedID,
+                                int notification_id, int campaign_id) {
         try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            PreparedStatement pstat = conn.prepareStatement("INSERT INTO notification (notificationID, notified_name, notifier_name, type, userID, campaignID)");
+            PreparedStatement pstat = conn.prepareStatement("INSERT INTO notification (notificationID, notifiedID, notifierID, type, campaignID)");
             pstat.setInt(1, notification_id);
-            pstat.setString(2, notified_name);
-            pstat.setString(3, notifier_name);
+            pstat.setInt(2, notifiedID);
+            pstat.setInt(3, notifierID);
             pstat.setString(4, String.valueOf(type));
-            pstat.setInt(5, user_id);
             pstat.setInt(6, campaign_id);
 
             pstat.executeUpdate();
@@ -45,29 +44,21 @@ public class NotificationJDBC implements NotificationDAO {
         }
 
     @Override
-    public ArrayList<Notification> getNotificationsByUserId(int user_id){
+    public ArrayList<Notification> getNotificationsByUserId(int notified_ID){ //colui che viene notificato è l'utente che ci interessa per recuperare le notifiche
         ArrayList<Notification> notif_list = new ArrayList<>();
          try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT notificationID, notified_name, notifier_name, type, campaignID FROM notification WHERE userID = ?");
-            ps.setInt(1, user_id);
+            PreparedStatement ps = conn.prepareStatement("SELECT notificationID notifierID, type, campaignID FROM notification WHERE notifiedID = ?");
+            ps.setInt(1, notified_ID);
             try(ResultSet rs = ps.executeQuery()){
                 while(rs.next()){
                 int notifID = rs.getInt("notificationID");
-                String notified = rs.getString("notified_name"); //da cambiare se vogliamo usare ID
-                String notifier = rs.getString("notifier_name");
+                int notifier = rs.getInt("notifierID");
                 String notiftype = rs.getString("type");
                 int notifcampaignID = rs.getInt("campaignID");
 
                 NotificationTypes typ = NotificationTypes.valueOf(notiftype);
 
-                Notification msg = notiFactory.CreateNotification(notifID, notified, notifier, typ, user_id, notifcampaignID);
-
-                /*if(kind == Notification_Kind.LOCAL){
-                    msg = notiFactory.CreateLocalNotification(); // però dovrebbe prendere come param kind o type per sapere che il type
-                }else{
-                    // notifica di tipo server
-                    msg = notiFactory.CreateServerNotification();
-                }*/
+                Notification msg = notiFactory.CreateNotification(notifID, notified_ID, notifier, typ, notifcampaignID);
 
                 notif_list.add(msg);
 
