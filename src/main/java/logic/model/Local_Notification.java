@@ -1,4 +1,7 @@
-package com.worldserpentinn.model;
+package logic.model;
+
+import logic.utils.enums.NotificationTypes;
+import logic.utils.enums.UserTypes;
 
 public class Local_Notification implements Notification{
     private UserTypes notifier_type;
@@ -10,7 +13,7 @@ public class Local_Notification implements Notification{
     private int campaign_id;
 
 
-    public Local_Notification(int notification_id, int notifier_id, int notified_id, NotificationTypes type, int campaign_id, UserTypes notifier_type, UserTypes notified_type){
+    public Local_Notification(int notification_id, int notifier_id, int notified_id, NotificationTypes type, int campaign_id){
         this.notifier_type=notifier_type;
         this.notified_type=notified_type;
         this.notification_ID=notification_id;
@@ -63,7 +66,7 @@ public class Local_Notification implements Notification{
 
     @Override
     public void setNotifier_id(int notifier_id){
-        this.notifier_id = notifier_name;
+        this.notifier_id = notifier_id;
     }
 
     @Override
