@@ -38,11 +38,11 @@ public class NotificationCSV implements NotificationDAO {
             return FIRST;
         }
 
-        public static int getNotifierName(){
+        public static int getNotifierID(){
             return SECOND;
         }
 
-        public static int getNotifiedName(){
+        public static int getNotifiedID(){
             return THIRD;
         }
 
@@ -137,8 +137,8 @@ public class NotificationCSV implements NotificationDAO {
 
     // il true serve a fare in modo che i dati vengano scritti alla fine del file, piuttosto che all'inizio, per evitare di riscrivere sul file
     @Override
-    public void addNotification(NotificationTypes type, String notifier_name, String notified_name,
-                         int notification_id, int user_id, int campaign_id){
+    public void addNotification(NotificationTypes type, int notifierID, int notifiedID,
+                         int notification_id, int campaign_id){
         try(CSVWriter csvWriter = new CSVWriter(new BufferedWriter(new FileWriter(fd, true)))){
             Notification_Kind kind = type.getKind();
             Notification msg;
@@ -153,13 +153,12 @@ public class NotificationCSV implements NotificationDAO {
             }*/
 
             // così ci pensa la factory a vedere se istanziare LOCAL o SERVER
-            msg = notifactory.CreateNotification(notification_id, notifier_name, notified_name, type, user_id, campaign_id);
+            msg = notifactory.CreateNotification(notification_id, notifierID, notifiedID, type, campaign_id);
 
             csv_record[Order.getNotificationID()] = String.valueOf(++number_of_entries);
-            csv_record[Order.getNotifierName()] = notifier_name; // probabilmente da cambiare con ID
-            csv_record[Order.getNotifiedName()] = notified_name;
+            csv_record[Order.getNotifierID()] = String.valueOf(notifierID);
+            csv_record[Order.getNotifiedID()] = String.valueOf(notifiedID);
             csv_record[Order.getType()] = String.valueOf(type);
-            csv_record[Order.getUserID()] = String.valueOf(user_id);
             csv_record[Order.getCampaignID()] = String.valueOf(campaign_id);
 
 
@@ -188,8 +187,8 @@ public class NotificationCSV implements NotificationDAO {
                 // 5) campaign_ID
                 if(Integer.parseInt(record[Order.getUserID()]) == user_id){
                     int notifId = Integer.parseInt(record[Order.getNotificationID()]);
-                    String notifier = record[Order.getNotifierName()];
-                    String notified = record[Order.getNotifiedName()];
+                    int notifier = Integer.parseInt(record[Order.getNotifierID()]);
+                    int notified = Integer.parseInt(record[Order.getNotifiedID()]);
                     NotificationTypes type = NotificationTypes.valueOf(record[Order.getType()]);
                     int campaignId = Integer.parseInt(record[Order.getCampaignID()]);
 
@@ -201,13 +200,13 @@ public class NotificationCSV implements NotificationDAO {
                         // notifica di tipo server
                         msg = notifactory.CreateServerNotification();
                     }*/
-                    msg = notifactory.CreateNotification(notifId, notifier, notified, type, user_id, campaignId);
+                    msg = notifactory.CreateNotification(notifId, notifier, notified, type, campaignId);
                     list.add(msg);
                 }
             }
 
             }catch(CsvValidationException | IOException e){
-                log.log(Level.SEVERE, "Exception occured while getting notifications by userID (csv)");
+                log.log(Level.SEVERE, "Exception occurred while getting notifications by userID (csv)");
         }
         return list;
     }
