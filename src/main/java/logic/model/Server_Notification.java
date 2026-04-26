@@ -1,4 +1,4 @@
-package com.worldserpentinn.model;
+package logic.model;
 
 public class Server_Notification implements Notification{
     private UserTypes notifier_type;
@@ -10,7 +10,7 @@ public class Server_Notification implements Notification{
     private int campaign_id;
 
 
-    public Server_Notification(int notification_id, int notifier_id, int notified_id, NotificationTypes type, int campaign_id, UserTypes notifier_type, UserTypes notified_type){
+    public Server_Notification(int notification_id, int notifier_id, int notified_id, NotificationTypes type, int campaign_id){
         this.notifier_type=notifier_type;
         this.notified_type=notified_type;
         this.notification_ID=notification_id;
