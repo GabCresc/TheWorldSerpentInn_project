@@ -63,7 +63,7 @@ public class Server_Notification implements Notification{
 
     @Override
     public void setNotifier_id(int notifier_id){
-        this.notifier_id = notifier_name;
+        this.notifier_id = notifier_id;
     }
 
     @Override
