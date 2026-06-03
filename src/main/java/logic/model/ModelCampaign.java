@@ -1,0 +1,154 @@
+package logic.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import logic.utils.enums.Mode;
+
+
+public class Model_Campaign {
+    private String campaignName;
+    private String timeSession;
+    private String date;
+    private String city;
+    private String day;
+    private String DM;
+    private Integer maxNumberOfPlayers;
+    private Integer campaignID;
+    private Integer dmID;
+    private Mode mode;
+    private List<User> waitingPlayers = new ArrayList<>(); // ?? //User o UserBean?
+    private List<User> acceptedPlayers = new ArrayList<>();
+
+    public Model_Campaign() {
+    }
+
+    // questo metodo controlla se la modalità è online oppure no. Ciò influenza la popolazione del campo city
+    public boolean IsModeOnline(Mode mode) {
+        if (mode == Mode.ONLINE) {
+            return true; // la campagna si svolge online
+        } else {
+            return false;
+        }
+    }
+
+    // questo metodo aggiunge il player alla lista di quelli che aspettano
+    public void addToWaitingPlayers(User player) {
+        if (!isFull() && !isAlreadyInCampaign(player)) {
+            this.waitingPlayers.add(player);
+        }
+    }
+
+    // si controlla se la lista di player in campagna è piena
+    public boolean isFull() {
+        return acceptedPlayers.size() >= maxNumberOfPlayers;
+    }
+
+    // si controlla se il player è già in una delle due liste
+    public boolean isAlreadyInCampaign(User player) {
+        return acceptedPlayers.contains(player) || waitingPlayers.contains(player);
+    }
+
+   public void setCampCity(String city, Mode mode) { /*throws InvalidValueException {
+    if(city == null){
+        throw new InvalidValueException("Please insert a valid city");
+    }*/
+        if (IsModeOnline(mode)) {
+            this.city = city;
+        } else {
+            this.city = null;
+        }
+    }
+
+    // GETTERS
+
+    public int getCampId() {
+        return this.campaignID;
+    }
+
+    public String getCampName() {
+        return this.campaignName;
+    }
+
+    public String getCampDM() {
+        return this.DM;
+    }
+
+    public String getCampDate() {
+        return this.date;
+    }
+
+    public String getCampTimeSession() {
+        return this.timeSession;
+    }
+
+    public String getCampDay() {
+        return this.day;
+    }
+
+    public int getCampDMID() {
+        return this.dmID;
+    }
+
+    public Mode getCampMode() {
+        return this.mode;
+    }
+
+    public int getMaxPlayers(){return this.maxNumberOfPlayers;}
+
+    public String getCampCity() { return this.city;}
+
+
+    // SETTERS
+
+    public void setCampId(int campaignId) {
+        this.campaignID = campaignId;
+    }
+
+    public void setCampName(String campaignName) { /*throws InvalidValueException, TextTooLongException {
+        if(eventName == null || eventName.equalsIgnoreCase("")) {
+            throw new InvalidValueException("Please insert a valid event name");
+        }
+        else if(eventName.length() > 20) {
+            throw new TextTooLongException("Too many characters for event name field");
+        }*/
+        this.campaignName = campaignName;
+    }
+
+    public void setDmId(int dmID) {
+        this.dmID = dmID;
+    }
+
+    public void setDM(String DM) {
+        this.DM = DM;
+    }
+
+    public void setCampDate(String date) { /*throws InvalidValueException {
+        if(city == null){
+            throw new InvalidValueException("Please insert a valid city");
+        }*/
+        this.date = date;
+    }
+
+    public void setTimeSession(String timeSession) {
+        this.timeSession = timeSession; //da espandere
+    }
+
+    public void setCampMode(Mode mode) {
+        this.mode = mode;
+    }
+
+    public void setCampDay(String day) {
+        this.day = day;
+    }
+
+    public void setCampDMId(int dmID) {
+        this.dmID = dmID;
+    }
+
+    public void setMaxNumberOfPlayers(int maxNumberOfPlayers){
+        this.maxNumberOfPlayers = maxNumberOfPlayers;
+    }
+}
+
+

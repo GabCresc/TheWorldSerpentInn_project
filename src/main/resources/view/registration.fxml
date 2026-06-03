@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="545.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.CgLogin">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="42.0" prefWidth="602.0" text="World Serpent Inn" textOverrun="CLIP">
+         <font>
+            <Font name="Eras Bold ITC" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="84.0" fitWidth="98.0" layoutX="252.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="92.0" fitWidth="123.0" layoutX="254.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/imm.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="248.0" layoutY="142.0" prefHeight="44.0" prefWidth="106.0" text="Registrati">
+         <font>
+            <Font name="Dubai Medium" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="emailField" layoutX="127.0" layoutY="204.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="128.0" layoutY="186.0" prefHeight="18.0" prefWidth="210.0" text="Scegli username/email" />
+      <PasswordField fx:id="passwordField" layoutX="127.0" layoutY="254.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="128.0" layoutY="236.0" prefHeight="18.0" prefWidth="118.0" text="Scegli la password" />
+      <Button fx:id="registerButton" alignment="CENTER" defaultButton="true" layoutX="130.0" layoutY="457.0" mnemonicParsing="false" onAction="#loginStandard" prefHeight="26.0" prefWidth="342.0" text="Registrati" textAlignment="CENTER" wrapText="true" />
+      <ImageView fitHeight="18.0" fitWidth="17.0" layoutX="445.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/emailicon.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="errorLabel" layoutX="274.0" layoutY="317.0" prefHeight="18.0" prefWidth="50.0" />
+      <PasswordField fx:id="passwordField1" layoutX="128.0" layoutY="306.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="128.0" layoutY="288.0" prefHeight="18.0" prefWidth="118.0" text="Conferma la password" />
+      <ComboBox fx:id="roleMenu" layoutX="128.0" layoutY="380.0" prefWidth="150.0" />
+      <Button fx:id="gobackButton" layoutX="253.0" layoutY="499.0" mnemonicParsing="false" text="Torna indietro" />
+      <TextArea fx:id="textfield" layoutX="299.0" layoutY="342.0" prefHeight="102.0" prefWidth="284.0" text="Scegli se registarti come Dungeon&#10;Master o come Player.&#10;Attenzione: se scegli l'opzione Dungeon Master,&#10;sarai in grado di creare &#10;ma non di partecipare a una campagna.&#10;" />
+   </children>
+</AnchorPane>
