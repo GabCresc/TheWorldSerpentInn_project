@@ -1,6 +1,6 @@
 package logic.controllers;
 
-import javafx.event.ActionEvent;
+
 import logic.controllers.abstract_factory_dao.DaoFactory;
 import logic.controllers.factory.NotificationFactory;
 import logic.dao.NotificationDAO;
@@ -27,7 +27,6 @@ public class NotificationControl {
 
     public NotificationControl() {
         DaoFactory factory = DaoFactory.getFactory();
-        UserDAO userDAO = factory.createUserDAO();
         this.notificationDAO = factory.createNotificationDAO();
         this.cachedNotifications = new ArrayList<>();
         this.notiFactory = new NotificationFactory();

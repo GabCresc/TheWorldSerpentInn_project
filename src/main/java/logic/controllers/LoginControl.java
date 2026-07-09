@@ -4,7 +4,6 @@ import logic.beans.BeanUser;
 import logic.controllers.abstract_factory_dao.DaoFactory;
 import logic.dao.UserDAO;
 import logic.exceptions.UsernameTaken;
-import logic.model.ModelCampaign;
 
 import logic.model.User;
 import logic.utils.SingletonLoggedUser;

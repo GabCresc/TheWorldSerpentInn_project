@@ -1,5 +1,4 @@
 package logic.dao;
-//far implementare l'interfaccia Serializable alle Notification
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import logic.controllers.factory.NotificationFactory;
 import logic.model.LocalNotification;
 import logic.model.Notification;
 

@@ -1,15 +1,20 @@
 package classes;
 
 import logic.beans.BeanCampaign;
-import logic.controllers.CampaignParticipationControl;
 import logic.controllers.LoginGoogleControl;
 import logic.controllers.ManageRequestControl;
 import logic.controllers.abstract_factory_dao.DaoFactory;
 import logic.dao.CampaignDAO;
 import logic.model.ModelCampaign;
+import org.junit.jupiter.api.Test;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestCalendar {
-    static void main(String[] args) {
+    private static final Logger logger = Logger.getLogger(TestCalendar.class.getName());
+     @Test
+    void testSimulationReminder(){
         try {
             // 1. Avviamo l'autenticazione Google per prendere i permessi
             // Questo aprirà il browser web per farti fare il login con l'account The World Serpent Inn (o il tuo personale)
@@ -34,7 +39,7 @@ public class TestCalendar {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Exception occurred while testing reminder");
         }
     }
 }
