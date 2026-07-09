@@ -23,8 +23,9 @@ public class UserJDBC implements UserDAO {
         // nel caso di Google l'identifier è email, nel caso di login standard è username
         if(!isGoogleLogin) {
             // Accesso senza Google
-            try (Connection conn = SingletonDBSession.getInstance().startConnection()) {
-                PreparedStatement pstatement = conn.prepareStatement("SELECT userID, username, password, user_type, email FROM user_data WHERE (BINARY username = ? OR BINARY email = ?)  AND BINARY password = ?");
+            String query = "SELECT userID, username, password, user_type, email FROM user_data WHERE (BINARY username = ? OR BINARY email = ?)  AND BINARY password = ?";
+            try (Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement pstatement = conn.prepareStatement(query)) {
+
                 pstatement.setString(1, identifier);
                 pstatement.setString(2, identifier);
                 pstatement.setString(3, password);
@@ -34,8 +35,9 @@ public class UserJDBC implements UserDAO {
             }
         }else{
             // Accesso con Google (password non necessaria)
-            try (Connection conn = SingletonDBSession.getInstance().startConnection()) {
-                PreparedStatement pstatement = conn.prepareStatement("SELECT userID, username, password, user_type, email FROM user_data WHERE BINARY email = ? ");
+            String query = "SELECT userID, username, password, user_type, email FROM user_data WHERE BINARY email = ? ";
+            try (Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement pstatement = conn.prepareStatement(query)) {
+
                 pstatement.setString(1, identifier);
                 user = getLoggedUser(pstatement);
             }catch(SQLException e){
@@ -78,8 +80,9 @@ public class UserJDBC implements UserDAO {
     @Override
     public int getUserIDbyUsername(String username) {
         int userid = 0;
-        try (Connection conn = SingletonDBSession.getInstance().startConnection()) {
-            PreparedStatement pstat = conn.prepareStatement("SELECT userID FROM user_data WHERE username = ? ");
+        String query = "SELECT userID FROM user_data WHERE username = ? ";
+        try (Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement pstat = conn.prepareStatement(query)) {
+
             pstat.setString(1, username);
             try (ResultSet rs = pstat.executeQuery()) {
                 if (rs.next()) {
@@ -95,8 +98,8 @@ public class UserJDBC implements UserDAO {
     @Override
     public String getUsernameByUserId(int userID) {
         String username = null;
-        try (Connection conn = SingletonDBSession.getInstance().startConnection()) {
-            PreparedStatement pstat = conn.prepareStatement("SELECT username FROM user_data WHERE userID = ? ");
+        String query = "SELECT username FROM user_data WHERE userID = ? ";
+        try (Connection conn = SingletonDBSession.getInstance().startConnection();  PreparedStatement pstat = conn.prepareStatement(query)) {
             pstat.setInt(1, userID);
             try (ResultSet rs = pstat.executeQuery()) {
                 if (rs.next()) {
@@ -112,8 +115,9 @@ public class UserJDBC implements UserDAO {
     @Override
     //metodo per registrare l'utente
     public void registerUser(User user){
-        try(Connection conn = SingletonDBSession.getInstance().startConnection()) {
-            PreparedStatement pstat = conn.prepareStatement("INSERT INTO user_data (userID, username, password, user_type, email) VALUES(NULL, ?, ?, ?, ?)");
+        String query = "INSERT INTO user_data (userID, username, password, user_type, email) VALUES(NULL, ?, ?, ?, ?)";
+        try(Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement pstat = conn.prepareStatement(query)) {
+
             pstat.setString(1, user.getUsername());
 
             //ulteriore precauzione per evitare problemi nel database
@@ -141,8 +145,9 @@ public class UserJDBC implements UserDAO {
     //controlliamo se l'utente esiste tramite username/email
     public boolean existenceUser(String identifier){
         boolean result = true;
-        try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT userID FROM user_data WHERE username = ? OR email = ?");
+        String query = "SELECT userID FROM user_data WHERE username = ? OR email = ?";
+        try(Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
             ps.setString(1, identifier);
             ps.setString(2, identifier);
             try(ResultSet rs = ps.executeQuery()){
@@ -158,9 +163,10 @@ public class UserJDBC implements UserDAO {
     @Override
     public User retrieveUserByUsername(String username) {
         User user = null;
+        String query = "SELECT userID, username, user_type, email  FROM user_data WHERE username = ?";
         SingletonDBSession session = SingletonDBSession.getInstance();
-        try (Connection conn = session.startConnection()) {
-            PreparedStatement ps = conn.prepareStatement("SELECT userID, username, user_type, email  FROM user_data WHERE username = ?");
+        try (Connection conn = session.startConnection();  PreparedStatement ps = conn.prepareStatement(query)) {
+
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -176,9 +182,10 @@ public class UserJDBC implements UserDAO {
     @Override
     public User retrieveUserByUserID(int userID){
         User user = null;
+        String query = "SELECT userID, username, user_type, email FROM user_data WHERE userID = ?";
         SingletonDBSession session = SingletonDBSession.getInstance();
-        try(Connection conn = session.startConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT userID, username, user_type, email FROM user_data WHERE userID = ?");
+        try(Connection conn = session.startConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
             ps.setInt(1, userID);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
