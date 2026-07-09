@@ -22,8 +22,6 @@ public class GcCampaignCard {
 
     private BeanCampaign bean = new BeanCampaign();
 
-    private CampaignParticipationControl participationControl;
-
     @FXML
     private Label nameLabel;
 
@@ -38,7 +36,7 @@ public class GcCampaignCard {
 
     public void setData(BeanCampaign bean){
         this.bean = bean; //passo esattamente la campagna i: devo chiamare un'altra view con questi dati
-        this.participationControl = new CampaignParticipationControl();
+        CampaignParticipationControl participationControl = new CampaignParticipationControl();
         String name = participationControl.getDmNameById(bean.getCampDMID());
         nameLabel.setText(name);
         titleLabel.setText(bean.getCampName());

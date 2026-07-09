@@ -30,11 +30,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.utils.enums.NotificationTypes;
 import logic.observer.Observer;
-import org.slf4j.LoggerFactory;
+
 
 public class GCNotifications extends EssentialGUI implements Observer {
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(GCNotifications.class);
     @FXML AnchorPane mainPane;
     @FXML ImageView arrowUp;
     @FXML ImageView arrowDown;

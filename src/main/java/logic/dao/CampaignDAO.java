@@ -2,7 +2,6 @@ package logic.dao;
 
 import logic.beans.BeanFilter;
 import logic.model.ModelCampaign;
-import logic.model.User;
 
 
 import java.util.List;

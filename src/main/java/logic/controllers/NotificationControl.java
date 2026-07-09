@@ -17,7 +17,6 @@ public class NotificationControl {
     private static final Logger logger = Logger.getLogger(NotificationControl.class.getName());
 
     private NotificationDAO notificationDAO;
-    private UserDAO userDAO;
     private NotificationFactory notiFactory;
 
     // Observer
@@ -28,7 +27,7 @@ public class NotificationControl {
 
     public NotificationControl() {
         DaoFactory factory = DaoFactory.getFactory();
-        this.userDAO = factory.createUserDAO();
+        UserDAO userDAO = factory.createUserDAO();
         this.notificationDAO = factory.createNotificationDAO();
         this.cachedNotifications = new ArrayList<>();
         this.notiFactory = new NotificationFactory();

@@ -32,6 +32,7 @@ import java.util.logging.Logger;
 
 import logic.model.User;
 import logic.utils.SingletonLoggedUser;
+import logic.utils.enums.Mode;
 
 
 public class LoginGoogleControl {
@@ -39,15 +40,13 @@ public class LoginGoogleControl {
     private static final Logger logger = Logger.getLogger(LoginGoogleControl.class.getName());
 
     private UserDAO daoUser;
-    private ModelCampaign modelCamp;
-    LoginGoogleControl googleController;
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance(); //classe factory che configura e crea istanze di parser e generatori (leggere e scrivere JSON)
 
     private static final HttpTransport transport = new com.google.api.client.http.javanet.NetHttpTransport();
 
     public LoginGoogleControl() {
         this.daoUser = DaoFactory.getFactory().createUserDAO();
-        this.modelCamp = new ModelCampaign();
+        ModelCampaign modelCamp = new ModelCampaign();
     }
 
     // verifichiamo l'ID token

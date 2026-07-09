@@ -15,9 +15,9 @@ public class LoginControl {
 
     private static final Logger logger = Logger.getLogger(LoginControl.class.getName());
 
-    private final UserDAO daoUser;
+    private UserDAO daoUser;
     private ModelCampaign modelCamp;
-    LoginGoogleControl googleController;
+    private LoginGoogleControl googleController;
 
     public LoginControl() {
         this.daoUser = DaoFactory.getFactory().createUserDAO();
@@ -99,4 +99,11 @@ public class LoginControl {
     }
 
 
+    public ModelCampaign getModelCamp() {
+        return modelCamp;
+    }
+
+    public void setModelCamp(ModelCampaign modelCamp) {
+        this.modelCamp = modelCamp;
+    }
 }

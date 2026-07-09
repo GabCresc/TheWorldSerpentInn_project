@@ -33,7 +33,6 @@ public class LocalNotification implements Notification {
     private String city;
     private String userEmail;
     private String freq;
-    private String frequenceString="";
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LocalNotification.class.getName());
     private static final String TIMEZONE = "Europe/Rome";
 
@@ -49,6 +48,8 @@ public class LocalNotification implements Notification {
     }
 
     public void setupReminder() throws IOException{
+
+        String frequenceString = "";
 
         Event reminder = new Event();
 

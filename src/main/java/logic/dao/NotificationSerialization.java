@@ -16,7 +16,6 @@ public class NotificationSerialization implements NotificationDAO{
     private static final Logger logger = Logger.getLogger(NotificationSerialization.class.getName());
     private static final String FILENAME = "DbNotification.dat"; //per i binari
     private File fd;
-    private NotificationFactory notifFactory;
 
     private int lastId = 0;
 
@@ -36,7 +35,7 @@ public class NotificationSerialization implements NotificationDAO{
         String filepath = foldername + File.separator + FILENAME;
         this.fd = new File(filepath);
 
-        this.notifFactory = new NotificationFactory();
+        NotificationFactory notifFactory = new NotificationFactory();
         init();
     }
 
@@ -105,8 +104,7 @@ public class NotificationSerialization implements NotificationDAO{
 
     @Override
     public ArrayList<Notification> getNotificationsByUserId(int userId){ //ok
-        List<Notification> listOfNotif = new ArrayList<>();
-        listOfNotif = load();
+        List<Notification> listOfNotif = load();
         ArrayList<Notification> user = new ArrayList<>();
         for(Notification n : listOfNotif){
             if(n.getNotifiedID() == userId){
@@ -118,8 +116,7 @@ public class NotificationSerialization implements NotificationDAO{
 
     @Override
     public boolean deleteNotification(int notificationId) {
-        List<Notification> listOfNotif = new ArrayList<>();
-        listOfNotif = load();
+        List<Notification> listOfNotif = load();
         Iterator<Notification> iterator = listOfNotif.iterator(); //usare i metodi della lista porta a CurrentModificationException
         boolean removed = false;
         while(iterator.hasNext()) {

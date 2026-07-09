@@ -63,9 +63,8 @@ public class ParticipationMemory implements ParticipationDAO {
         List<User> players = new ArrayList<>();
         for(Participation p : listPart){
             if(p.status.equalsIgnoreCase(status) && p.campaignID == campaignID){
-                User user = new User();
                 UserDAO userDao = DaoFactory.getFactory().createUserDAO();
-                user = userDao.retrieveUserByUserID(p.userID);
+                User user = userDao.retrieveUserByUserID(p.userID);
                 if(user != null) {
                     players.add(user);
                 }

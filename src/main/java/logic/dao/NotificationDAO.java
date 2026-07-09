@@ -2,7 +2,6 @@ package logic.dao;
 
 import logic.model.Notification;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public interface NotificationDAO {
