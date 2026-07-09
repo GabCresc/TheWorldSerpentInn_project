@@ -56,9 +56,10 @@ public class NotificationJDBC implements NotificationDAO {
     @Override
     public ArrayList<Notification> getNotificationsByUserId(int notifiedID){ //colui che viene notificato è l'utente che ci interessa per recuperare le notifiche
         ArrayList<Notification> notifList = new ArrayList<>();
-        try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT notif.*, camp.start_date, camp.frequency, camp.time_session FROM notification notif " +
-                    "JOIN campaign camp ON notif.campaignID = camp.campaignID WHERE notif.notifiedID = ?");
+        String query = "SELECT notif.*, camp.start_date, camp.frequency, camp.time_session FROM notification notif " +
+                "JOIN campaign camp ON notif.campaignID = camp.campaignID WHERE notif.notifiedID = ?";
+        try(Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
             ps.setInt(1, notifiedID);
             try(ResultSet rs = ps.executeQuery()){
                 while(rs.next()){
@@ -86,8 +87,9 @@ public class NotificationJDBC implements NotificationDAO {
 
     @Override
     public boolean deleteNotification(int notificationID) {
-        try (Connection conn = SingletonDBSession.getInstance().startConnection()) {
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM notification WHERE notificationID = ?");
+        String query = "DELETE FROM notification WHERE notificationID = ?";
+        try (Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+
             ps.setInt(1, notificationID);
             int rows = ps.executeUpdate();
             return rows > 0;
