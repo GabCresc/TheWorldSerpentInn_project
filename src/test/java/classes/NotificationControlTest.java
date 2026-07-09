@@ -31,11 +31,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // create campaign and notification test
 
  class NotificationControlTest {
+     private final static String TEST_USER = "UserTest";
+
     public NotificationControlTest(){
         //empty
     }
+
     private SingletonLoggedUser loggedUser = SingletonLoggedUser.getInstance();
     private final Logger logger = Logger.getLogger(NotificationControlTest.class.getName());
+
+
 
     BeanCampaign campaign = new BeanCampaign();
 
@@ -79,7 +84,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         //Divento player e controllo se esiste la campagna appena creata
         loggedUser.setUserType(UserTypes.PLAYER);
         loggedUser.setUserID(6);
-        loggedUser.setUsername("UserTest");
+        loggedUser.setUsername(TEST_USER);
 
         BeanFilter beanFilter = new BeanFilter();
         beanFilter.setMode(Mode.OFFLINE);
@@ -93,7 +98,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         //invio la notifica della creazione della campagna appena creata
         BeanUser user = new BeanUser();
         try {
-            user.setUsername("UserTest");
+            user.setUsername(TEST_USER);
         }catch(TextTooLongException | InvalidValueException e){
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -108,7 +113,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         //Divento player e controllo se mi e' arrivata una notifica che la nuova campagna è stato creato
         loggedUser.setUserType(UserTypes.PLAYER);
         loggedUser.setUserID(6);
-        loggedUser.setUsername("UserTest");
+        loggedUser.setUsername(TEST_USER);
 
         List<Notification> myNotifications = notificationControl.retrieveNotifications(loggedUser.getUserID());
         assertEquals(NotificationTypes.CAMPAIGN_ADDED, myNotifications.getLast().getNotificationType());

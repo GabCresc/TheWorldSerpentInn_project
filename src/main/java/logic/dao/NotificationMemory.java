@@ -10,12 +10,12 @@ import java.util.logging.Logger;
 public class NotificationMemory implements NotificationDAO {
 
     private static final Logger logger = Logger.getLogger(NotificationMemory.class.getName());
-    private static final int idCount = 0;
+    private static final int ID_COUNT = 0;
     private static final Map<Integer, Notification> hashNotif = new HashMap<>();
 
     @Override
     public int addNotification(Notification msg){ //ok
-        int newId= idCount+1;
+        int newId= ID_COUNT +1;
         msg.setNotificationID(newId);
         try {
             hashNotif.put(newId, msg);

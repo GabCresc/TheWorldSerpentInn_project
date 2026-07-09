@@ -14,7 +14,7 @@ import logic.model.Notification;
 public class NotificationSerialization implements NotificationDAO{
 
     private static final Logger logger = Logger.getLogger(NotificationSerialization.class.getName());
-    private static final String filename = "DbNotification.dat"; //per i binari
+    private static final String FILENAME = "DbNotification.dat"; //per i binari
     private File fd;
     private NotificationFactory notifFactory;
 
@@ -33,7 +33,7 @@ public class NotificationSerialization implements NotificationDAO{
             }
         }
 
-        String filepath = foldername + File.separator + filename;
+        String filepath = foldername + File.separator + FILENAME;
         this.fd = new File(filepath);
 
         this.notifFactory = new NotificationFactory();
