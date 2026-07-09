@@ -3,6 +3,7 @@ package classes;
 import logic.beans.BeanCampaign;
 import logic.beans.BeanUser;
 import logic.controllers.CampaignParticipationControl;
+import logic.dao.CampaignDAO;
 import logic.dao.ParticipationDAO;
 import logic.exceptions.RequestAlreadySent;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,20 +21,14 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
  class RequestAlreadySentTest {
 
-    private CampaignParticipationControl participationControl;
 
     @Mock
     private ParticipationDAO participationDAO;
 
 
-    @BeforeEach
-    void setUp() {
-        participationControl = new CampaignParticipationControl(participationDAO);
-    }
-
     @Test
     void exceptionDoesOccur() throws RequestAlreadySent {
-
+        CampaignParticipationControl participationControl = new CampaignParticipationControl(participationDAO);
         BeanCampaign beanCampaign = new BeanCampaign();
         beanCampaign.setCampId(101);
 
@@ -46,9 +41,7 @@ import static org.mockito.Mockito.*;
         when(participationDAO.isRequestAlreadyPresent(beanUser.getUserID(), beanCampaign.getCampId()))
                 .thenReturn(true);
 
-        Exception exception = assertThrows(RequestAlreadySent.class, () -> {
-            participationControl.participate(beanCampaign, beanUser);
-        });
+        Exception exception = assertThrows(RequestAlreadySent.class, () -> participationControl.participate(beanCampaign, beanUser));
 
         String expectedMessage = "Richiesta di partecipazione già inviata a questa campagna!";
         String actualMessage = exception.getMessage();

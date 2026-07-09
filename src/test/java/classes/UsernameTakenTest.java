@@ -23,19 +23,14 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
  class UsernameTakenTest {
-    private LoginControl loginControl;
 
     @Mock
     private UserDAO userDAO; //non sporchiamo il database, utente necessario per far sì che l'eccezione si verifichi
 
-    @BeforeEach
-    void setUp() {
-        loginControl = new LoginControl(userDAO);
-    }
 
     @Test //lanciamo qui le eccezioni: non vogliamo che il test vada avanti se si verificano queste eccezioni
     void exceptionDoesOccur() throws TextTooLongException, TextTooShortException, InvalidValueException {
-
+        LoginControl loginControl = new LoginControl(userDAO);
         //istanziamo una beanUser
         BeanUser beanUser = new BeanUser();
 
@@ -54,9 +49,7 @@ import static org.mockito.Mockito.when;
         when(userDAO.retrieveUserByUsername(fakeUsername)).thenReturn(user);
 
 
-        Exception exception = assertThrows(UsernameTaken.class, () -> {
-            loginControl.completeRegistration(beanUser);
-        });
+        Exception exception = assertThrows(UsernameTaken.class, () -> loginControl.completeRegistration(beanUser));
         //vediamo se l'eccezione si verifica
         String expectedMessage = "Questo username è già in utilizzo";
         String actualMessage = exception.getMessage();
