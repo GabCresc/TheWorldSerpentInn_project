@@ -32,7 +32,6 @@ import java.util.logging.Logger;
 
 import logic.model.User;
 import logic.utils.SingletonLoggedUser;
-import logic.utils.enums.Mode;
 
 
 public class LoginGoogleControl {
@@ -46,7 +45,6 @@ public class LoginGoogleControl {
 
     public LoginGoogleControl() {
         this.daoUser = DaoFactory.getFactory().createUserDAO();
-        ModelCampaign modelCamp = new ModelCampaign();
     }
 
     // verifichiamo l'ID token

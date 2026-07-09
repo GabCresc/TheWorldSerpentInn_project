@@ -15,7 +15,7 @@ import logic.utils.enums.NotificationTypes;
 import logic.utils.enums.UserTypes;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // create campaign and notification test
 
  class NotificationControlTest {
-     private final static String TEST_USER = "UserTest";
+     private static final String TEST_USER = "UserTest";
 
     public NotificationControlTest(){
         //empty

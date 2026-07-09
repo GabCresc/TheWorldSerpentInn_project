@@ -8,6 +8,7 @@ import logic.model.ModelCampaign;
 
 import logic.model.User;
 import logic.utils.SingletonLoggedUser;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,19 +17,16 @@ public class LoginControl {
     private static final Logger logger = Logger.getLogger(LoginControl.class.getName());
 
     private UserDAO daoUser;
-    private ModelCampaign modelCamp;
     private LoginGoogleControl googleController;
 
     public LoginControl() {
         this.daoUser = DaoFactory.getFactory().createUserDAO();
-        this.modelCamp = new ModelCampaign();
         this.googleController = new LoginGoogleControl();
     }
 
 
     public LoginControl(UserDAO userDAO){ //utile per il testing
         this.daoUser = userDAO;
-        this.modelCamp = new ModelCampaign();
         this.googleController = new LoginGoogleControl();
     }
 
@@ -98,12 +96,4 @@ public class LoginControl {
         logger.log(Level.INFO, "Session closed successfully");
     }
 
-
-    public ModelCampaign getModelCamp() {
-        return modelCamp;
-    }
-
-    public void setModelCamp(ModelCampaign modelCamp) {
-        this.modelCamp = modelCamp;
-    }
 }

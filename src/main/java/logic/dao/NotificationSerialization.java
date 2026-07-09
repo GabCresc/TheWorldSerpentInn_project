@@ -35,7 +35,6 @@ public class NotificationSerialization implements NotificationDAO{
         String filepath = foldername + File.separator + FILENAME;
         this.fd = new File(filepath);
 
-        NotificationFactory notifFactory = new NotificationFactory();
         init();
     }
 
