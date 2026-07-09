@@ -1,35 +1,59 @@
 package logic.model;
-
 import logic.utils.enums.UserTypes;
 
-
-public class Model_User {
-    //dummy
+public class User {
     private String username;
     private String password;
-    private Integer Id;
-    private UserTypes usertype;
+    private UserTypes type;
+    private int userID;
+    private String email;
 
-    public void setID(int Id){
-        this.Id = Id;
+    public User(){
+        //empty
     }
 
-    public void setUsername(String username){
+    public User(String email){
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setUserType(UserTypes usertype){
-        this.usertype = usertype;
-    }
-    public String getUsername(){
-        return this.username;
+    public String getUsername() {
+        return username;
     }
 
-    public String getPassword(){
-        return this.password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public UserTypes getUsertype(){
-        return this.usertype;
+    public String getPassword() {
+        return password;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public UserTypes getUserType() {
+        return type;
+    }
+
+    public void setUserType(UserTypes type) {
+        this.type = type;
+
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 }

@@ -2,34 +2,44 @@ package logic.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+import logic.beans.BeanCampaign;
 import logic.utils.enums.Mode;
 
 
-public class Model_Campaign {
+public class ModelCampaign {
     private String campaignName;
-    private String timeSession;
-    private String date;
+    private LocalTime timeSession;
+    private LocalDateTime startDate;
     private String city;
-    private String day;
-    private String DM;
+    private String freq; // compreso anno, mese ecc
+    private String dm;
     private Integer maxNumberOfPlayers;
     private Integer campaignID;
-    private Integer dmID;
+    private Integer dmId;
     private Mode mode;
-    private List<User> waitingPlayers = new ArrayList<>(); // ?? //User o UserBean?
+    private List<User> waitingPlayers = new ArrayList<>();
     private List<User> acceptedPlayers = new ArrayList<>();
+    private String platform;
 
-    public Model_Campaign() {
+    public ModelCampaign(){
+        //empty
     }
 
-    // questo metodo controlla se la modalità è online oppure no. Ciò influenza la popolazione del campo city
-    public boolean IsModeOnline(Mode mode) {
-        if (mode == Mode.ONLINE) {
-            return true; // la campagna si svolge online
-        } else {
-            return false;
-        }
+    public ModelCampaign(BeanCampaign beanCampaign) {
+        this.campaignName=beanCampaign.getCampName();
+        this.timeSession=beanCampaign.getCampTimeSession();
+        this.startDate=beanCampaign.getCampDate();
+        this.city=beanCampaign.getCampCity();
+        this.freq=beanCampaign.getCampFreq();
+        this.dm=beanCampaign.getCampDM();
+        this.maxNumberOfPlayers=beanCampaign.getMaxNumberOfPlayers();
+        this.campaignID=beanCampaign.getCampId();
+        this.dmId=beanCampaign.getCampDMID();
+        this.mode=beanCampaign.getCampMode();
+        this.platform = beanCampaign.getPlatform();
     }
 
     // questo metodo aggiunge il player alla lista di quelli che aspettano
@@ -48,16 +58,8 @@ public class Model_Campaign {
     public boolean isAlreadyInCampaign(User player) {
         return acceptedPlayers.contains(player) || waitingPlayers.contains(player);
     }
-
-   public void setCampCity(String city, Mode mode) { /*throws InvalidValueException {
-    if(city == null){
-        throw new InvalidValueException("Please insert a valid city");
-    }*/
-        if (IsModeOnline(mode)) {
-            this.city = city;
-        } else {
-            this.city = null;
-        }
+    public void setCampCity(String city) {
+        this.city = city;
     }
 
     // GETTERS
@@ -70,24 +72,22 @@ public class Model_Campaign {
         return this.campaignName;
     }
 
-    public String getCampDM() {
-        return this.DM;
+    public String getCampDm() {
+        return this.dm;
     }
 
-    public String getCampDate() {
-        return this.date;
+    public LocalDateTime getCampStartDate() {
+        return this.startDate;
     }
 
-    public String getCampTimeSession() {
+    public LocalTime getCampTimeSession() {
         return this.timeSession;
     }
 
-    public String getCampDay() {
-        return this.day;
-    }
+    public String getCampFreq() { return this.freq;}
 
-    public int getCampDMID() {
-        return this.dmID;
+    public int getCampDmId() {
+        return (this.dmId != null) ? this.dmId : 0;
     }
 
     public Mode getCampMode() {
@@ -98,6 +98,9 @@ public class Model_Campaign {
 
     public String getCampCity() { return this.city;}
 
+    public String getPlatform() {return this.platform;}
+
+
 
     // SETTERS
 
@@ -105,50 +108,40 @@ public class Model_Campaign {
         this.campaignID = campaignId;
     }
 
-    public void setCampName(String campaignName) { /*throws InvalidValueException, TextTooLongException {
-        if(eventName == null || eventName.equalsIgnoreCase("")) {
-            throw new InvalidValueException("Please insert a valid event name");
-        }
-        else if(eventName.length() > 20) {
-            throw new TextTooLongException("Too many characters for event name field");
-        }*/
+    public void setCampName(String campaignName)  {
+
         this.campaignName = campaignName;
     }
 
-    public void setDmId(int dmID) {
-        this.dmID = dmID;
+    public void setCampDmName(String dm) {
+
+        this.dm = dm;
     }
 
-    public void setDM(String DM) {
-        this.DM = DM;
+    public void setCampStartDate(LocalDateTime date){
+        this.startDate = date;
     }
 
-    public void setCampDate(String date) { /*throws InvalidValueException {
-        if(city == null){
-            throw new InvalidValueException("Please insert a valid city");
-        }*/
-        this.date = date;
-    }
-
-    public void setTimeSession(String timeSession) {
-        this.timeSession = timeSession; //da espandere
+    public void setTimeSession(LocalTime timeSession) {
+        this.timeSession = timeSession;
     }
 
     public void setCampMode(Mode mode) {
         this.mode = mode;
     }
 
-    public void setCampDay(String day) {
-        this.day = day;
+    public void setCampFreq(String freq) {
+        this.freq = freq;
     }
 
-    public void setCampDMId(int dmID) {
-        this.dmID = dmID;
+    public void setCampDmId(int dmId) {
+        this.dmId = dmId;
     }
 
     public void setMaxNumberOfPlayers(int maxNumberOfPlayers){
         this.maxNumberOfPlayers = maxNumberOfPlayers;
     }
+
+    public void setPlatform(String platform) {this.platform = platform;}
+
 }
-
-

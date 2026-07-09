@@ -2,18 +2,24 @@ package logic.graphiccontrollers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 import logic.beans.BeanUser;
 import logic.controllers.LoginGoogleControl;
+import logic.controllers.NotificationControl;
 import logic.utils.enums.UserTypes;
+import logic.view.EssentialGUI;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GcRegisterGoogle {
+public class GcGoogleRegister {
 
     @FXML
     private Button gobackButton;
@@ -30,17 +36,15 @@ public class GcRegisterGoogle {
     @FXML
     private Label label1;
 
-    private static final Logger logger = Logger.getLogger(GcRegisterGoogle.class.getName());
 
-    private LoginGoogleControl googleControl;
+    private static final Logger logger = Logger.getLogger(GcGoogleRegister.class.getName());
+
+    private LoginGoogleControl googleControl = new LoginGoogleControl();
     private BeanUser beanUser;
 
-    public void GgRegisterGoogle(){
-        this.googleControl = new LoginGoogleControl();
-    }
 
     @FXML
-    public void initializeMenu(){
+    public void initialize(){ //inizializiamo il menu
         roleMenu.getItems().addAll("Player", "DM");
         roleMenu.setValue("Player");
     }
@@ -52,7 +56,7 @@ public class GcRegisterGoogle {
 
     @FXML
     void goBackButton2(ActionEvent event) {
-            loadPage("/view/login.fxml");
+        loadPage("/view/login.fxml");
     }
 
     @FXML
@@ -67,7 +71,8 @@ public class GcRegisterGoogle {
 
         try{
             googleControl.completeRegistrationGoogle(beanUser);
-            loadPage("/view/registrationgoogle.fxml");
+            loadPage("/view/InitialGUILogged.fxml");
+            EssentialGUI.showSuccessBanner("login");
         }catch(Exception e){
             logger.log(Level.WARNING, "Error while updating role", e);
         }
@@ -77,19 +82,18 @@ public class GcRegisterGoogle {
     @FXML
     private void loadPage(String fxmlPath){
         try{
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource(fxmlPath));
-            javafx.scene.Parent root  = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root  = loader.load();
 
-            javafx.stage.Stage stage = (javafx.stage.Stage) textfield.getScene().getWindow();
+            Stage stage = (Stage) textfield.getScene().getWindow();
 
-            javafx.scene.Scene scene = new javafx.scene.Scene(root);
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
         }catch(Exception e){
-            logger.log(Level.WARNING, "Can't load FXML file: " + fxmlPath, e.getMessage());
+            logger.log(Level.WARNING, "Can''t load FXML file: {0}. Reason: {1}", new Object[]{fxmlPath, e.getMessage()});
         }
     }
 
 }
-

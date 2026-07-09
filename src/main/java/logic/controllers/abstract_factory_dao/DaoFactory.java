@@ -1,4 +1,4 @@
-package logic.controllers.AbstractFactoryDao;
+package logic.controllers.abstract_factory_dao;
 
 import logic.dao.*;
 import logic.utils.Persistence;

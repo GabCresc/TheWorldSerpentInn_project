@@ -3,39 +3,43 @@ package logic.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.model.Model_Campaign;
+import logic.model.ModelCampaign;
 import logic.utils.enums.Mode;
-import logic.beans.Bean_User;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-public class Bean_Campaign {
+public class BeanCampaign {
 
-        private String campaignName;
-        private String timeSession;
-        private String date;
-        private String city;
-        private String day;
-        private String DM;
-        private Integer maxNumberOfPlayers;
-        private Integer campaignID;
-        private Integer dmID;
-        private Mode mode;
-        private List<Bean_User> waitingPlayers = new ArrayList<>();
-        private List<Bean_User> acceptedPlayers = new ArrayList<>();
+    private String campaignName;
+    private LocalTime timeSession;
+    private LocalDateTime startDate;
+    private String city;
+    private String freq;
+    private String dm;
+    private Integer maxNumberOfPlayers;
+    private Integer campaignID;
+    private Integer dmID;
+    private Mode mode;
+    private List<BeanUser> waitingPlayers = new ArrayList<>();
+    private List<BeanUser> acceptedPlayers = new ArrayList<>();
+    private String platform;
 
-    public Bean_Campaign(){
+    public BeanCampaign(){
         // empty
     }
 
-    public Bean_Campaign(Model_Campaign model){
+    public BeanCampaign(ModelCampaign model){
         this.campaignID = model.getCampId();
         this.campaignName = model.getCampName();
         this.timeSession = model.getCampTimeSession();
-        this.date = model.getCampDate();
+        this.startDate = model.getCampStartDate();
         this.city = model.getCampCity();
-        this.DM = model.getCampDM();
+        this.dm = model.getCampDm();
         this.maxNumberOfPlayers = model.getMaxPlayers();
-        this.dmID = model.getCampDMID();
+        this.dmID = model.getCampDmId();
         this.mode = model.getCampMode();
+        this.platform = model.getPlatform();
+        this.freq = model.getCampFreq();
     }
 
     // SETTERS
@@ -43,67 +47,65 @@ public class Bean_Campaign {
         this.campaignID = campaignId;
     }
 
-    public void setCampName(String campaignName){ /*throws InvalidValueException, TextTooLongException {
-    if(eventName == null || eventName.equalsIgnoreCase("")) {
-        throw new InvalidValueException("Please insert a valid event name");
-    }
-    else if(eventName.length() > 20) {
-        throw new TextTooLongException("Too many characters for event name field");
-    }*/
+    public void setCampName(String campaignName){
         this.campaignName = campaignName;
     }
+
     public void setDmId(int dmID){
         this.dmID = dmID;
     }
 
-    public void setDM(String DM){
-        this.DM = DM;
+    public void setMaxNumberOfPlayers(int maxNumberOfPlayers){
+        this.maxNumberOfPlayers = maxNumberOfPlayers;
     }
-    public void setCampDate(String date){this.date = date;}
-    public void setTimeSession(String timeSession){
-        this.timeSession = timeSession; //da espandere
+    public void setDM(String dm){
+        this.dm = dm;
     }
-    public void SetCampMode(Mode mode){this.mode = mode;}
-    public void SetCampDay(String day){this.day = day;}
-    public void SetCampDMId (int dmID){this.dmID = dmID;}
+    public void setCampDate(LocalDateTime date){this.startDate = date;}
 
-// GETTERS
+    public void setTimeSession(LocalTime timeSession){
+        this.timeSession = timeSession;
+    }
+    public void setCampMode(Mode mode){this.mode = mode;}
+    public void setCampFreq(String freq){this.freq = freq;}
+    public void setCampCity(String city){this.city = city;}
+    public void setWaitingPlayers(List<BeanUser> waitingPlayers){this.waitingPlayers = waitingPlayers;}
+    public void setAcceptedPlayers(List<BeanUser> acceptedPlayers){this.acceptedPlayers = acceptedPlayers;}
+    public void setPlatform(String platform){this.platform = platform;}
+
+    // GETTERS
 
     // Il metodo getAcceptedPlayers restituisce la lista dei giocatori già accettati, permettendo di verificare se ci sono posti
     // ancora disponibili. Ciò è utile per verificare se è possibile mandare una richiesta di partecipazione
 
-    public List<Bean_User> getAcceptedPlayers() {return this.acceptedPlayers;}
+    public List<BeanUser> getAcceptedPlayers() {return this.acceptedPlayers;}
 
-    public boolean IsFull(){return getAcceptedPlayers().size() >= this.maxNumberOfPlayers;}
-    //se è vero, disabilitare bottone per richiedere partecipazione/inviare una notifica
+    public List<BeanUser> getWaitingPlayers() {return this.waitingPlayers;}
 
-    public String getNumberSeats() {return getAcceptedPlayers() + "/" + this.maxNumberOfPlayers + " giocatori accettati";}
+    public boolean isFull(){return getAcceptedPlayers().size() >= this.maxNumberOfPlayers;}
 
-    public int getCampId(){return this.campaignID;}
+
+    public int getCampId(){return (this.campaignID != null) ? this.campaignID : -1;}
 
     public String getCampName(){return this.campaignName;}
 
-    public String getCampDM(){return this.DM;}
+    public String getCampDM(){return this.dm;}
 
-    public String getCampDate(){return this.date;}
+    public LocalDateTime getCampDate(){return this.startDate;}
 
-    public String getCampTimeSession(){return this.timeSession;}
+    public LocalTime getCampTimeSession(){return this.timeSession;}
 
-    public String getCampDay(){return this.day;}
+    public String getCampFreq(){return this.freq;}
 
-    public int getCampDMID(){return this.dmID;}
+    public int getCampDMID(){return (this.dmID != null) ? this.dmID : 0;}
 
     public Mode getCampMode(){return this.mode;}
-
-    // per gestire la richiesta di partecipazione, è anche possibile mettere una campagna con 0 posti: in tal modo
-    // nel momento in cui il player manda una richiesta, appare un pop up che lo informa che la campagna è piena e
-    // viene reinderizzato nella homepage
-
-    ///
 
     public String getCampCity(){return this.city;}
 
     public Integer getMaxNumberOfPlayers(){return this.maxNumberOfPlayers;}
+
+    public String getPlatform() {return this.platform;}
 
 
 }

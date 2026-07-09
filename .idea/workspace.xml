@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f254a40-ed14-435e-a034-d01446576ac1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/ManageRequestControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic/exceptions/TextTooShortException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCInvitePlayers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCNotifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic/view/CLI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/Arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/dice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/notification.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/snake_pattern_wallpaper.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/confirmationPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/invitePlayers.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/notifications.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/classes/CampaignParticipationControlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/classes/LoginControlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/classes/NotificationControlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/classes/RequestAlreadySentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/classes/TestCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/classes/UsernameTakenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ispwproject2526.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ispwproject2526.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/beans/BeanCampaign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/beans/BeanCampaign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/beans/BeanFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/beans/BeanFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/beans/BeanNotificationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/beans/BeanNotificationData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/beans/BeanUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/beans/BeanUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/CampaignParticipationControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/CampaignParticipationControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/CreateCampaignControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/CreateCampaignControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/LoginControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/LoginControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/LoginGoogleControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/LoginGoogleControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/NotificationControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/NotificationControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/DaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/DaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/JDBCDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/JDBCDaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/MemoryDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/MemoryDaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/SerializationDaoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/abstract_factory_dao/SerializationDaoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/controllers/factory/NotificationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/controllers/factory/NotificationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/CampaignDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/CampaignDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/CampaignJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/CampaignJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/CampaignMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/CampaignMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/Info sulle DAO" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/Info sulle DAO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationSerialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/NotificationSerialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/ParticipationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/ParticipationDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/ParticipationJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/ParticipationJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/ParticipationMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/ParticipationMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/UserJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/UserJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/dao/UserMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/dao/UserMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/exceptions/InvalidValueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/exceptions/InvalidValueException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/exceptions/NoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/exceptions/NoRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/exceptions/RequestAlreadySent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/exceptions/RequestAlreadySent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/exceptions/TextTooLongException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/exceptions/TextTooLongException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/exceptions/UsernameTaken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/exceptions/UsernameTaken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCCreateCampaign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCCreateCampaign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCInitialGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCInitialGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCInitialGUILogged.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GCInitialGUILogged.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcCampaignCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcCampaignCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcCampaignDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcCampaignDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcCampaignList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcCampaignList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcConfirmation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcConfirmation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcGoogleRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcGoogleRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/graphiccontrollers/GcRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/model/LocalNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/model/LocalNotification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/model/ModelCampaign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/model/ModelCampaign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/model/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/model/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/model/ServerNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/model/ServerNotification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/observer/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/observer/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/observer/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/observer/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/Persistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/SingletonDBSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/SingletonDBSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/SingletonLoggedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/SingletonLoggedUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/enums/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/enums/Mode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/enums/NotificationTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/enums/NotificationTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/enums/Notification_Kind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/enums/NotificationKind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/enums/PersistenceTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/enums/PersistenceTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/enums/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/utils/enums/UserTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/utils/enums/UserTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/view/EssentialGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/view/EssentialGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/icons/snake_pattern_wallpaper.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/InitialGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/InitialGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/InitialGUILogged.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/InitialGUILogged.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/campaignCard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/campaignCard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/campaignDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/campaignDetails.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/createCampaign.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/createCampaign.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/registration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/registration.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/registrationgoogle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/registrationgoogle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/viewCampaigns.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/viewCampaigns.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CampaignDAOTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Exception" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AriannaG0/WORLD-SERPENT-INN.git&quot;,
+    &quot;accountId&quot;: &quot;fc4fb5a9-c6f5-42d6-8baf-8e7820491d75&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3EAlO6UhZdffHrNUG2dsmoEZebr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.CLI.executor": "Run",
+    "Application.EssentialGUI.executor": "Run",
+    "Application.GcCampaignDetails.executor": "Run",
+    "Application.GcCampaignList.executor": "Run",
+    "Application.GcConfirmation.executor": "Run",
+    "Application.Main.executor": "Debug",
+    "Application.TestCalendar.executor": "Run",
+    "JUnit.CampaignParticipationControlTest.checkPreviousParticipation.executor": "Run",
+    "JUnit.CampaignParticipationControlTest.executor": "Run",
+    "JUnit.CampaignParticipationControlTest.participateToCampaign.executor": "Run",
+    "JUnit.CampaignParticipationControlTest.removeParticipation.executor": "Run",
+    "JUnit.LoginControlTest.completeRegistration.executor": "Run",
+    "JUnit.LoginControlTest.executor": "Run",
+    "JUnit.LoginControlTest.isUsernameTakenWhenUserDoesExist.executor": "Run",
+    "JUnit.LoginControlTest.isUsernameTakenWhenUserDoesNotExist.executor": "Run",
+    "JUnit.LoginControlTest.loginStandardFailure.executor": "Run",
+    "JUnit.LoginControlTest.loginStandardSuccess.executor": "Run",
+    "JUnit.LoginControlTest.testDisperato.executor": "Run",
+    "JUnit.RequestAlreadySentTest.exceptionDoesOccur.executor": "Run",
+    "JUnit.RequestAlreadySentTest.executor": "Run",
+    "JUnit.UsernameTakenTest.doesExceptionOccur.executor": "Run",
+    "JUnit.UsernameTakenTest.exceptionDoesOccur.executor": "Run",
+    "Maven.ispwproject2526 [package].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "TestNG.NotificationControlTest.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "File.Encoding"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="CLI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="logic.view.CLI" />
+      <module name="ispwproject2526" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="logic.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="logic.Main" />
+      <module name="ispwproject2526" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCalendar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="classes.TestCalendar" />
+      <module name="ispwproject2526" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginControlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ispwproject2526" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="classes" />
+      <option name="MAIN_CLASS_NAME" value="classes.LoginControlTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RequestAlreadySentTest.exceptionDoesOccur" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ispwproject2526" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="classes" />
+      <option name="MAIN_CLASS_NAME" value="classes.RequestAlreadySentTest" />
+      <option name="METHOD_NAME" value="exceptionDoesOccur" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.TestCalendar" />
+      <item itemvalue="Application.CLI" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.LoginControlTest" />
+      <item itemvalue="JUnit.RequestAlreadySentTest.exceptionDoesOccur" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.CLI" />
+        <item itemvalue="Application.TestCalendar" />
+        <item itemvalue="JUnit.LoginControlTest" />
+        <item itemvalue="JUnit.RequestAlreadySentTest.exceptionDoesOccur" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f254a40-ed14-435e-a034-d01446576ac1" name="Changes" comment="" />
+      <created>1779629220885</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779629220885</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -14,102 +14,141 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GcCampaignDetails">
     <children>
-        <Pane fx:id="scalesBackground" layoutY="94.0" prefHeight="691.0" prefWidth="1328.0" style="-fx-background-image: url('/icons/snake_pattern_wallpaper.jpeg'); -fx-background-repeat: repeat; -fx-background-size: 250px 150px;">
-         <children>
-            <Label fx:id="titleLabel" alignment="CENTER" layoutX="340.0" layoutY="39.0" prefHeight="17.0" prefWidth="657.0" style="-fx-background-color: white;" text="TITLE" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial" size="48.0" />
-               </font>
-            </Label>
-            <Label layoutX="344.0" layoutY="122.0" prefHeight="46.0" prefWidth="650.0" style="-fx-background-color: white;" text="Dettagli" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Pane layoutX="344.0" layoutY="155.0" prefHeight="337.0" prefWidth="650.0" style="-fx-background-color: white;">
-               <children>
-                  <Label fx:id="timeSessionLabel" alignment="CENTER" layoutX="1.0" prefHeight="55.0" prefWidth="650.0" text="Orario" textAlignment="CENTER">
-                     <font>
+        <Pane fx:id="scalesBackground" layoutY="94.0" prefHeight="691.0" prefWidth="1328.0" style="-fx-background-image: url('/icons/snake_pattern_wallpaper.jpg'); -fx-background-repeat: repeat; -fx-background-size: 250px 150px;">
+            <children>
+                <Label fx:id="titleLabel" alignment="CENTER" layoutX="340.0" layoutY="39.0" prefHeight="17.0" prefWidth="657.0" style="-fx-background-color: white;" textAlignment="CENTER">
+                    <font>
+                        <Font name="Goudy Old Style Italic" size="48.0" />
+                    </font>
+                </Label>
+                <Label layoutX="343.0" layoutY="113.0" prefHeight="55.0" prefWidth="650.0" style="-fx-background-color: white;" text="    Dettagli" textAlignment="CENTER">
+                    <font>
                         <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutY="44.0" prefHeight="4.0" prefWidth="650.0" />
-                  <Label fx:id="hourLabel" alignment="CENTER" layoutY="45.0" prefHeight="55.0" prefWidth="650.0" text="Durata" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="1.0" layoutY="88.0" prefHeight="4.0" prefWidth="650.0" />
-                  <Label fx:id="numberOfPlayersLabel" alignment="CENTER" layoutY="87.0" prefHeight="55.0" prefWidth="650.0" text="Numero Giocatori" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutY="132.0" prefHeight="4.0" prefWidth="650.0" />
-                  <Label fx:id="placeLabel" alignment="CENTER" layoutY="131.0" prefHeight="55.0" prefWidth="650.0" text="Luogo/Modalità" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="1.0" layoutY="180.0" prefHeight="4.0" prefWidth="650.0" />
-                  <Label layoutX="1.0" layoutY="244.0" prefHeight="40.0" prefWidth="650.0" text="Dungeon Master" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dmLabel" alignment="CENTER" layoutX="1.0" layoutY="270.0" prefHeight="55.0" prefWidth="650.0" text="Nome" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="platformLabel" alignment="CENTER" layoutY="182.0" prefHeight="55.0" prefWidth="650.0" text="Piattaforma utilizzata" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="-1.0" layoutY="234.0" prefHeight="4.0" prefWidth="650.0" />
-               </children>
-            </Pane>
-            <Pane layoutX="344.0" layoutY="511.0" prefHeight="154.0" prefWidth="650.0" style="-fx-background-color: white;">
-               <children>
-                  <Label alignment="CENTER" layoutX="8.0" layoutY="14.0" prefHeight="40.0" prefWidth="650.0" text="Vuoi partecipare a questa campagna?">
-                     <font>
-                        <Font name="Arial Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="confirmButton" layoutX="213.0" layoutY="75.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="50.0" text="Sì" />
-                  <Button fx:id="goBackButton" layoutX="299.0" layoutY="75.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" text="Torna alla selezione" />
-               </children>
-            </Pane>
-            <ImageView fitHeight="366.0" fitWidth="251.0" layoutX="56.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/serpent.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="366.0" fitWidth="251.0" layoutX="1040.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/serpent.png" />
-               </image>
-            </ImageView>
-         </children></Pane>
-        <Hyperlink layoutX="126.0" prefHeight="94.0" prefWidth="597.0" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="World Serpent Inn">
+                    </font>
+                </Label>
+                <Pane layoutX="344.0" layoutY="155.0" prefHeight="337.0" prefWidth="650.0" style="-fx-background-color: white;">
+                    <children>
+                        <Label fx:id="timeSessionLabel" alignment="CENTER" layoutX="1.0" prefHeight="55.0" prefWidth="650.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Separator layoutY="44.0" prefHeight="4.0" prefWidth="650.0" />
+                        <Label fx:id="hourLabel" alignment="CENTER" layoutY="45.0" prefHeight="55.0" prefWidth="650.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Separator layoutX="1.0" layoutY="88.0" prefHeight="4.0" prefWidth="650.0" />
+                        <Label fx:id="numberOfPlayersLabel" alignment="CENTER" layoutY="87.0" prefHeight="55.0" prefWidth="650.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Separator layoutY="132.0" prefHeight="4.0" prefWidth="650.0" />
+                        <Label fx:id="placeplatformLabel" alignment="CENTER" layoutY="131.0" prefHeight="55.0" prefWidth="650.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Separator layoutX="1.0" layoutY="184.0" prefHeight="4.0" prefWidth="650.0" />
+                        <Label layoutX="1.0" layoutY="244.0" prefHeight="40.0" prefWidth="650.0" text="  Dungeon Master" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="dmLabel" alignment="CENTER" layoutX="1.0" layoutY="270.0" prefHeight="55.0" prefWidth="650.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="modeLabel" alignment="CENTER" layoutY="191.0" prefHeight="40.0" prefWidth="650.0" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Separator layoutX="-1.0" layoutY="234.0" prefHeight="4.0" prefWidth="650.0" />
+                        <Label layoutX="24.0" layoutY="18.0" prefHeight="17.0" prefWidth="100.0" text="Orario sessione:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="63.0" prefHeight="17.0" prefWidth="100.0" text="Frequenza:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="105.0" prefHeight="20.0" prefWidth="138.0" text="Numero di giocatori:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="139.0" prefHeight="20.0" prefWidth="131.0" text="Città (se offline)/">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="157.0" prefHeight="20.0" prefWidth="152.0" text="Piattaforma (se online):">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="202.0" prefHeight="17.0" prefWidth="100.0" text="Modalità:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Pane layoutX="344.0" layoutY="511.0" prefHeight="154.0" prefWidth="650.0" style="-fx-background-color: white;">
+                    <children>
+                        <Label alignment="CENTER" layoutX="8.0" layoutY="14.0" prefHeight="40.0" prefWidth="650.0" text="Vuoi partecipare a questa campagna?">
+                            <font>
+                                <Font name="Arial Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="confirmButton" layoutX="213.0" layoutY="75.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="46.0" prefWidth="50.0" style="-fx-background-color: green; -fx-background-radius: 5; -fx-font-size: 18; -fx-text-fill: white;" text="Sì" />
+                        <Button fx:id="goBackButton" layoutX="299.0" layoutY="75.0" mnemonicParsing="false" onAction="#goBackAction" prefHeight="46.0" prefWidth="181.0" style="-fx-background-color: green; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-size: 18;" text="Torna alla selezione" textFill="#4cc74e" />
+                    </children>
+                </Pane>
+                <ImageView blendMode="SRC_ATOP" fitHeight="366.0" fitWidth="251.0" layoutX="56.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/serpent.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="366.0" fitWidth="251.0" layoutX="1040.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/serpent.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="errorLabel" alignment="CENTER" layoutY="118.0" prefHeight="17.0" prefWidth="1328.0" textAlignment="CENTER" textFill="#e70a0a">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+            </children></Pane>
+        <Hyperlink fx:id="title" layoutX="126.0" onAction="#showHomePage" prefHeight="94.0" prefWidth="597.0" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="World Serpent Inn">
             <font>
                 <Font name="Eras Bold ITC" size="60.0" />
             </font>
         </Hyperlink>
-        <Hyperlink layoutX="758.0" layoutY="59.0" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Vedi campagne" />
-        <Hyperlink layoutX="872.0" layoutY="59.0" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Vedi pg" />
-        <Hyperlink layoutX="938.0" layoutY="59.0" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Crea Campagna" />
-        <Hyperlink layoutX="1058.0" layoutY="59.0" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Crea pg" />
+        <Hyperlink fx:id="showCampaigns" layoutX="758.0" layoutY="59.0" onAction="#showShowCampaigns" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Vedi campagne" />
+        <Hyperlink fx:id="showPg" layoutX="872.0" layoutY="59.0" onAction="#showShowPg" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Vedi pg" />
+        <Hyperlink fx:id="createCampaigns" layoutX="938.0" layoutY="59.0" onAction="#showCreateCampaign" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Crea Campagna" />
+        <Hyperlink fx:id="createPg" layoutX="1058.0" layoutY="59.0" onAction="#showCreatePg" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="Crea pg" />
         <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="31.0" layoutY="8.0">
             <image>
-                <Image url="@../../icons/logo.png" />
+                <Image url="@../icons/imm.png" />
             </image>
         </ImageView>
-      <MenuButton layoutX="1189.0" layoutY="56.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #ccc; -fx-border-radius: 10;" text="MenuButton">
-        <items>
-          <MenuItem fx:id="logoutItem" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
-        </items>
-      </MenuButton>
+        <MenuButton fx:id="userMenuButton" layoutX="1189.0" layoutY="56.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #ccc; -fx-border-radius: 10;" text="MenuButton">
+            <items>
+                <MenuItem fx:id="logoutItem" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
+            </items>
+        </MenuButton>
+        <ImageView fx:id="notificationIcon" fitHeight="27.0" fitWidth="29.0" layoutX="1136.0" layoutY="56.0" onMouseClicked="#loadNotifications">
+            <image>
+                <Image url="@../icons/notification.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

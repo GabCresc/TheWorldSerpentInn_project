@@ -69,13 +69,7 @@ public class NotificationJDBC implements NotificationDAO {
 
                     NotificationTypes typ = NotificationTypes.valueOf(notiftype);
 
-                    Notification msg = notiFactory.createNotification(notifID, notifiedID, notifier, typ, notifcampaignID);
-
-                    // queste variabili servono per i reminder,  ma non vengono utilizzate per istanziare l'oggetto notifica. Lasciarle?
-                    Timestamp ts = rs.getTimestamp("start_date"); // TimeStamp coincide con il formato di DATETIME() nel database
-                   // if(ts != null){msg.setStartDate(ts.toLocalDateTime());}
-
-                    String frequency = rs.getString("frequency");
+                    Notification msg = notiFactory.createNotification(notifID, notifier, notifiedID, typ, notifcampaignID);
 
                     Time timeSession = rs.getTime("time_session");
                     if(timeSession != null){msg.setTimeSession(timeSession.toLocalTime());}

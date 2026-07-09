@@ -5,16 +5,26 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GcCampaignCard">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GcCampaignCard">
    <children>
       <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="8.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/user.png" />
+            <Image url="@../icons/dice.png" />
          </image>
       </ImageView>
-      <Label fx:id="nameLabel" layoutX="65.0" layoutY="21.0" prefHeight="26.0" prefWidth="178.0" />
-      <Label fx:id="titleLabel" layoutX="8.0" layoutY="64.0" prefHeight="34.0" prefWidth="239.0" />
-      <Button fx:id="selectCampaignButton" layoutX="13.0" layoutY="136.0" mnemonicParsing="false" onAction="#selectCampaign" prefHeight="26.0" prefWidth="229.0" text="Seleziona Campagna" />
+      <Label fx:id="nameLabel" layoutX="65.0" layoutY="21.0" prefHeight="26.0" prefWidth="178.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="titleLabel" alignment="CENTER" layoutX="8.0" layoutY="64.0" prefHeight="34.0" prefWidth="239.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="selectCampaignButton" layoutX="10.0" layoutY="136.0" mnemonicParsing="false" onAction="#selectCampaign" prefHeight="34.0" prefWidth="230.0" style="-fx-background-color: green; -fx-background-radius: 5; -fx-text-fill: white;" text="Seleziona Campagna">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="545.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.CgLogin">
+<AnchorPane prefHeight="627.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GcRegister">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="42.0" prefWidth="602.0" text="World Serpent Inn" textOverrun="CLIP">
          <font>
@@ -24,26 +24,28 @@
             <Image url="@../icons/imm.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="248.0" layoutY="142.0" prefHeight="44.0" prefWidth="106.0" text="Registrati">
+      <Label alignment="CENTER" layoutX="248.0" layoutY="139.0" prefHeight="44.0" prefWidth="106.0" text="Registrati">
          <font>
             <Font name="Dubai Medium" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="emailField" layoutX="127.0" layoutY="204.0" prefHeight="26.0" prefWidth="342.0" />
-      <Label layoutX="128.0" layoutY="186.0" prefHeight="18.0" prefWidth="210.0" text="Scegli username/email" />
-      <PasswordField fx:id="passwordField" layoutX="127.0" layoutY="254.0" prefHeight="26.0" prefWidth="342.0" />
-      <Label layoutX="128.0" layoutY="236.0" prefHeight="18.0" prefWidth="118.0" text="Scegli la password" />
-      <Button fx:id="registerButton" alignment="CENTER" defaultButton="true" layoutX="130.0" layoutY="457.0" mnemonicParsing="false" onAction="#loginStandard" prefHeight="26.0" prefWidth="342.0" text="Registrati" textAlignment="CENTER" wrapText="true" />
-      <ImageView fitHeight="18.0" fitWidth="17.0" layoutX="445.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="usernameField" layoutX="127.0" layoutY="194.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="127.0" layoutY="226.0" prefHeight="18.0" prefWidth="210.0" text="Scegli email" />
+      <PasswordField fx:id="passwordField" layoutX="126.0" layoutY="294.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="127.0" layoutY="275.0" prefHeight="18.0" prefWidth="118.0" text="Scegli la password" />
+      <Button fx:id="registerButton" alignment="CENTER" defaultButton="true" layoutX="131.0" layoutY="547.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="26.0" prefWidth="342.0" text="Registrati" textAlignment="CENTER" wrapText="true" />
+      <ImageView fitHeight="18.0" fitWidth="17.0" layoutX="445.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/emailicon.png" />
          </image>
       </ImageView>
-      <Label fx:id="errorLabel" layoutX="274.0" layoutY="317.0" prefHeight="18.0" prefWidth="50.0" />
-      <PasswordField fx:id="passwordField1" layoutX="128.0" layoutY="306.0" prefHeight="26.0" prefWidth="342.0" />
-      <Label layoutX="128.0" layoutY="288.0" prefHeight="18.0" prefWidth="118.0" text="Conferma la password" />
-      <ComboBox fx:id="roleMenu" layoutX="128.0" layoutY="380.0" prefWidth="150.0" />
-      <Button fx:id="gobackButton" layoutX="253.0" layoutY="499.0" mnemonicParsing="false" text="Torna indietro" />
-      <TextArea fx:id="textfield" layoutX="299.0" layoutY="342.0" prefHeight="102.0" prefWidth="284.0" text="Scegli se registarti come Dungeon&#10;Master o come Player.&#10;Attenzione: se scegli l'opzione Dungeon Master,&#10;sarai in grado di creare &#10;ma non di partecipare a una campagna.&#10;" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="4.0" layoutY="369.0" prefHeight="18.0" prefWidth="595.0" textAlignment="CENTER" />
+      <PasswordField fx:id="passwordField1" layoutX="128.0" layoutY="343.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="128.0" layoutY="324.0" prefHeight="18.0" prefWidth="118.0" text="Conferma la password" />
+      <ComboBox fx:id="roleMenu" layoutX="223.0" layoutY="387.0" prefWidth="150.0" />
+      <Button fx:id="gobackButton" layoutX="253.0" layoutY="583.0" mnemonicParsing="false" onAction="#goBackButton" text="Torna indietro" />
+      <TextArea fx:id="textfield" editable="false" layoutX="158.0" layoutY="432.0" prefHeight="102.0" prefWidth="284.0" text="Scegli se registarti come Dungeon&#10;Master o come Player.&#10;Attenzione: se scegli l'opzione Dungeon Master,&#10;sarai in grado di creare &#10;ma non di partecipare a una campagna.&#10;" />
+      <TextField fx:id="emailField" layoutX="127.0" layoutY="243.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="127.0" layoutY="174.0" prefHeight="18.0" prefWidth="210.0" text="Scegli username" />
    </children>
 </AnchorPane>

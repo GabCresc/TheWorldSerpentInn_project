@@ -1,0 +1,41 @@
+
+Quando mando la richiesta di partecipazione a un Player viene contato come ADDED
+problema campagna test che compare tra le campagne visualizzabili dall'utente
+le notifiche del dm di richiesta portano il nome del dm
+cliccare sulla campanella dovrebbe portarmi sulle notifiche?
+Nella ModelCampaign c'è un metodo: AddToWaitingPlayers mai usato. Provare a togliere e vedere cosa succede:
+
+// questo metodo aggiunge il player alla lista di quelli che aspettano
+    public void addToWaitingPlayers(User player) {
+        if (!isFull() && !isAlreadyInCampaign(player)) {
+            this.waitingPlayers.add(player);
+        }
+    }
+
+    // si controlla se la lista di player in campagna è piena
+    public boolean isFull() {
+        return acceptedPlayers.size() >= maxNumberOfPlayers;
+    }
+
+    // si controlla se il player è già in una delle due liste
+    public boolean isAlreadyInCampaign(User player) {
+        return acceptedPlayers.contains(player) || waitingPlayers.contains(player);
+    }
+
+  public List<Integer> getPlayerIDByStatus(int campaignID, String status) { //ok, però non essendo nell'interfaccia non può essere chiamata se usi la DAOFactory
+        List<Integer> listPlayerID = new ArrayList<>();
+        try (Connection conn = SingletonDBSession.getInstance().startConnection()) {
+            PreparedStatement ps = conn.prepareStatement("SELECT playerID FROM campaign_request WHERE campaignID = ? and status = ?");
+            ps.setInt(1, campaignID);
+            ps.setString(2, status);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    listPlayerID.add(rs.getInt("playerID"));
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "SQLException while getting list of players by status", e);
+        }
+        return listPlayerID;
+    } (stava in ParticipationJDBC)

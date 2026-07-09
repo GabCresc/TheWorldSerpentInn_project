@@ -1,73 +1,144 @@
 package logic.model;
 
+import javafx.event.ActionEvent;
+import logic.controllers.abstract_factory_dao.DaoFactory;
+import logic.controllers.factory.NotificationFactory;
+import logic.dao.CampaignDAO;
+import logic.dao.NotificationDAO;
+import logic.dao.UserDAO;
 import logic.utils.enums.NotificationTypes;
-import logic.utils.enums.UserTypes;
 
-public class Server_Notification implements Notification{
-    private NotificationTypes notification_type;
-    private int notified_id;
-    private int notifier_id;
-    private int notification_ID;
-    private int campaign_id;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Properties;
+import com.google.api.client.googleapis.json.GoogleJsonError;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.auth.http.HttpCredentialsAdapter;
+import com.google.auth.oauth2.GoogleCredentials;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import org.apache.commons.codec.binary.Base64;
+import java.io.Serial;
+
+public class ServerNotification implements Notification{
+    private NotificationTypes notificationType;
+    private int notifiedID;
+    private int notifierID;
+    private int notificationID;
+    private int campaignID;
+    private LocalDateTime startDate;
+    private LocalTime timeSession;
+    private String freq;
+    private String city;
+    private String userEmail;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 
-    public Server_Notification(int notification_id, int notifier_id, int notified_id, NotificationTypes type, int campaign_id){
-        this.notification_ID=notification_id;
-        this.notifier_id = notifier_id;
-        this.notified_id=notified_id;
-        this.notification_type=type;
-        this.campaign_id=campaign_id;
+    public ServerNotification(int notificationID, int notifierID, int notifiedID, NotificationTypes type, int campaignID){
+        this.notificationID = notificationID;
+        this.notifierID = notifierID;
+        this.notifiedID = notifiedID;
+        this.notificationType = type;
+        this.campaignID = campaignID;
     }
 
     //getter
     @Override
     public NotificationTypes getNotificationType(){
-        return notification_type;
+        return notificationType;
     }
 
     @Override
-    public int getNotifier_id(){
-        return notifier_id;
+    public int getNotifierID(){
+        return notifierID;
     }
 
     @Override
-    public int getNotified_id(){
-        return notified_id;
+    public int getNotifiedID(){
+        return notifiedID;
     }
 
     @Override
-    public int getNotification_ID(){
-        return notification_ID;
+    public int getNotificationID(){
+        return notificationID;
     }
 
     @Override
-    public int getCampaign_id(){
-        return campaign_id;
+    public int getCampaignID(){
+        return campaignID;
     }
+
+    public LocalDateTime getStartDate(){
+        return startDate;
+    }
+
+    public String getCity(){
+        return city;
+    }
+
+    public String getUserEmail(){
+        return userEmail;
+    }
+
+    public String getFrequency(){
+        return freq;
+    }
+
+    public LocalTime getTimeSession(){
+        return timeSession;
+    }
+
 
     //setter
     @Override
-    public void setNotificationType(NotificationTypes notification_type){
-        this.notification_type=notification_type;
+    public void setNotificationType(NotificationTypes notificationType){
+        this.notificationType = notificationType;
     }
 
     @Override
-    public void setNotifier_id(int notifier_id){
-        this.notifier_id = notifier_id;
+    public void setNotifierID(int notifierID){
+        this.notifierID = notifierID;
     }
 
     @Override
-    public void setNotified_id(int notified_id){
-        this.notified_id = notified_id;
+    public void setNotifiedID(int notifiedID){
+        this.notifiedID = notifiedID;
     }
 
     @Override
-    public void setNotification_ID(int notification_ID){
-        this.notification_ID = notification_ID;
+    public void setNotificationID(int notificationID){
+        this.notificationID = notificationID;
     }
 
     @Override
-    public void setCampaign_id(int campaign_id){
-        this.campaign_id=campaign_id;
+    public void setCampaignID(int campaignID){
+        this.campaignID = campaignID;
     }
+
+    public void setStartDate(LocalDateTime startDate){
+        this.startDate=startDate;
+    }
+
+    public void setTimeSession(LocalTime timeSession){
+        this.timeSession=timeSession;
+    }
+
+    public void setCity(String city){
+        this.city=city;
+    }
+
+    public void setUserEmail(String userEmail){
+        this.userEmail=userEmail;
+    }
+
+    public void setFrequency(String freq){
+        this.freq=freq;
+    }
+
 }

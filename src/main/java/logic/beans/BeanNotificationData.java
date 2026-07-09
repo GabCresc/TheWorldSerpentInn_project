@@ -1,13 +1,21 @@
 package logic.beans;
 import java.time.LocalDateTime;
+import logic.utils.enums.NotificationTypes;
 
-
-public class BeanPartecipation {
+public class BeanNotificationData {
     private int userID;
     private int campaignID;
-    private LocalDateTime date; // per i reminderr
-    private LocalDateTime campaignEndDate;
+    private LocalDateTime date; // per i reminder
+    private LocalDateTime startDate;
+    private String message;
+    private NotificationTypes type;
 
+    public BeanNotificationData(String message, NotificationTypes type, int userID, int campaignID){
+        this.message = message;
+        this.type = type;
+        this.userID = userID;
+        this.campaignID = campaignID;
+    }
     //GETTER
     public int getUserID() {
         return this.userID;
@@ -21,8 +29,16 @@ public class BeanPartecipation {
         return this.date;
     }
 
-    public LocalDateTime getEndDate() {
-        return this.campaignEndDate;
+    public LocalDateTime getStartDate() {
+        return this.startDate;
+    }
+
+    public String getMessage(){
+        return this.message;
+    }
+
+    public NotificationTypes getType(){
+        return this.type;
     }
 
     //SETTER
@@ -38,10 +54,21 @@ public class BeanPartecipation {
         this.date = date;
     }
 
-    public void setCampaignEndDate(LocalDateTime campaignEndDate){
-        this.campaignEndDate = campaignEndDate;
+    public void setStartDate(LocalDateTime startDate){
+        this.startDate = startDate;
     }
 
+    public void setMessage(String message) throws IllegalArgumentException{
+        if(message == null){
+            throw new IllegalArgumentException("Notification message can't be null"); //da gestire nel NotificationControl
+        }
+        this.message = message;
+    }
+
+    public void setType(NotificationTypes type)throws IllegalArgumentException {
+        if (type == null) {
+            throw new IllegalArgumentException("Notification Type can't be null"); //da gestire nel NotificationControl
+        }
+        this.type = type;
+    }
 }
-
-

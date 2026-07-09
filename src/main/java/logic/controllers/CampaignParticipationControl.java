@@ -2,10 +2,10 @@ package logic.controllers;
 
 import logic.beans.BeanCampaign;
 import logic.beans.BeanFilter;
+import logic.controllers.abstract_factory_dao.DaoFactory;
+import logic.exceptions.RequestAlreadySent;
 import logic.model.ModelCampaign;
 import logic.dao.*;
-import logic.dao.ParticipationJDBC;
-import logic.observer.Subject;
 import logic.utils.enums.NotificationTypes;
 import logic.model.User;
 
@@ -14,64 +14,68 @@ import java.util.logging.Logger;
 import java.util.ArrayList;
 import logic.beans.BeanUser;
 import java.util.List;
-import logic.beans.BeanNotificationData;
 import logic.utils.enums.Status;
 
 
-public class CampaignPartecipationControl extends Subject{
+public class CampaignParticipationControl{
 
-    private static final Logger logger = Logger.getLogger(CampaignPartecipationControl.class.getName());
+    private static final Logger logger = Logger.getLogger(CampaignParticipationControl.class.getName());
+    private ParticipationDAO participationDao = null;
 
-    private BeanNotificationData lastPartecipation;  //subjectState che descrive l'evento
+    //costruttore di base
+    public CampaignParticipationControl(){
+        //empty
+    }
 
-    public boolean partecipate(BeanCampaign campBean, BeanUser userBean) { // invia la richiesta di partecipazione -> dunque comunica con il
+    //costruttore per i test
+    public CampaignParticipationControl(ParticipationDAO participationDAO){
+        this.participationDao = participationDAO;
+    }
+
+    public boolean participate(BeanCampaign campBean, BeanUser userBean) throws RequestAlreadySent { // invia la richiesta di partecipazione -> dunque comunica con il
         // controller delle notifiche per inviare la richiesta al corrispettivo DM e inserisce il player nella lista waitingPlayers
 
         if (campBean.isFull()) {
-            // si potrebbe lanciare un'eccezione "CampaignFull". Nella gestione di questa eccezione si potrebbe
-            // reinderizzare l'utente alla pagina iniziale (in qualche modo)
             logger.log(Level.FINE, "Selected Campaign is full");
             return false;
         }
-
-        ParticipationJDBC pDao = new ParticipationJDBC();
+        // se participationDao è nulla, allora non stiamo usando quella di test e ne istanziamo una vera
+        ParticipationDAO pDao =  (this.participationDao != null) ? this.participationDao : DaoFactory.getFactory().createParticipationDAO();
         if (pDao.isRequestAlreadyPresent(userBean.getUserID(), campBean.getCampId())) {
             logger.log(Level.FINE, "Already sent a request to this campaign");
-            return false;
+            throw new RequestAlreadySent("Richiesta di partecipazione già inviata a questa campagna!");
         }
 
         pDao.addWaitingPlayer(userBean.getUserID(), campBean.getCampId());
-        this.lastPartecipation = new BeanNotificationData("New partecipation request from: ", NotificationTypes.REQUEST_PARTECIPATION,
-                userBean.getUserID(), campBean.getCampId());
-
-        this.lastPartecipation.setUserID(campBean.getCampId()); //lo user finale è il dm, in quanto abbiamo scelto di
-        // far apparire la notifica nella sezione notifiiche del dm
-
-        notifyObs(); // notifichiamo l'osservatore (NotificationControl)
+        NotificationControl notificationControl = new NotificationControl();
+        notificationControl.sendServerNotification(NotificationTypes.REQUEST_PARTICIPATION, userBean.getUserID(), campBean.getCampDMID(), campBean.getCampId());
         return true;
     }
 
-    public void applyFilter(BeanFilter filter){
+    public List<BeanCampaign> getFilteredCampaigns(BeanFilter filter){
+        List<BeanCampaign> beanCampaignList = new ArrayList<>();
         try{
-            CampaignJDBC campDao = new CampaignJDBC();
+            CampaignDAO campDao = DaoFactory.getFactory().createCampaignDAO();
             List<ModelCampaign> list = campDao.findCampaignByFilter(filter);
-            //tramite un metodo della view va mostrato
+            for(ModelCampaign m:list){
+                BeanCampaign bean = new BeanCampaign(m);
+                beanCampaignList.add(bean);
+            }
 
-        }catch(Exception _){ // anche qui si potrebbe mettere una exception personalizzata
-            logger.log(Level.SEVERE, "Exception occurred in Filter");
+        }catch(Exception e){
+            logger.log(Level.SEVERE, "Exception occurred in Filter", e);
         }
+
+        return beanCampaignList;
     }
 
-    //sarebbe cancelSelection
-
-    public void removePartecipation(BeanCampaign campBean, BeanUser userBean) {
-
+    public boolean removeParticipation(BeanCampaign campBean, BeanUser userBean) {
+        boolean success = false;
         try {
-            int campaignid = campBean.getCampId();
-            int userid = userBean.getUserID(); // IMPORTANTE: quando avremo fatto il Singleton di LOGGED USER
-            // inserire quel userid!!!
-            ParticipationJDBC pDao = new ParticipationJDBC();
-            boolean success = pDao.removeRequestOfParticipation(userid, campaignid);
+            int campaignId = campBean.getCampId();
+            int userid = userBean.getUserID();
+            ParticipationDAO pDao = DaoFactory.getFactory().createParticipationDAO();
+            success = pDao.removeRequestOfParticipation(userid, campaignId);
 
             if (success) {
                 logger.log(Level.INFO, "Partecipation request successfully removed");
@@ -82,11 +86,12 @@ public class CampaignPartecipationControl extends Subject{
         }catch(Exception _){
             logger.log(Level.SEVERE, "Error occurred in controller while removing partecipation");
         }
+        return success;
     }
 
     public List<BeanCampaign> getAvailableCampaigns(){
 
-        CampaignJDBC campDao = new CampaignJDBC();
+        CampaignDAO campDao = DaoFactory.getFactory().createCampaignDAO();
         List<ModelCampaign> listModels = campDao.retrieveCampaigns();
 
         List<BeanCampaign> beanList = new ArrayList<>();
@@ -95,6 +100,7 @@ public class CampaignPartecipationControl extends Subject{
             beanList.add(bean);
         }
         return beanList;
+
     }
 
     public void showCampaignDetails(BeanCampaign bean){
@@ -108,7 +114,7 @@ public class CampaignPartecipationControl extends Subject{
 
     public List<BeanUser> getBeanList(int campID, Status status) {
 
-        ParticipationJDBC pDao = new ParticipationJDBC();
+        ParticipationDAO pDao = DaoFactory.getFactory().createParticipationDAO();
         List<BeanUser> beanUsers = new ArrayList<>();
 
         List<User> userModels = pDao.getPlayersByStatus(campID, status.toString());
@@ -123,8 +129,10 @@ public class CampaignPartecipationControl extends Subject{
         return beanUsers;
     }
 
-    public BeanNotificationData getLastPartecipation(){
-        return this.lastPartecipation;
+    public String getDmNameById(int userID){
+        UserDAO userDAO = DaoFactory.getFactory().createUserDAO();
+        return userDAO.getUsernameByUserId(userID);
     }
+
 
 }

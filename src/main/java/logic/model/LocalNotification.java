@@ -1,96 +1,208 @@
 package logic.model;
 
+import logic.controllers.abstract_factory_dao.DaoFactory;
+import logic.dao.CampaignDAO;
 import logic.utils.enums.NotificationTypes;
-import logic.utils.enums.UserTypes;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import com.google.api.client.util.DateTime;
+import com.google.api.services.calendar.Calendar;
+import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventDateTime;
+import com.google.api.services.calendar.model.EventAttendee;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.io.IOException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class Local_Notification implements Notification{
-    private UserTypes notifier_type;
-    private UserTypes notified_type;
-    private NotificationTypes notification_type;
-    private int notified_id;
-    private int notifier_id;
-    private int notification_ID;
-    private int campaign_id;
+import java.io.Serial;
+import java.util.logging.Level;
 
 
-    public Local_Notification(int notification_id, int notifier_id, int notified_id, NotificationTypes type, int campaign_id){
-        this.notifier_type=notifier_type;
-        this.notified_type=notified_type;
-        this.notification_ID=notification_id;
-        this.notifier_id = notifier_id;
-        this.notified_id=notified_id;
-        this.notification_type=type;
-        this.campaign_id=campaign_id;
+public class LocalNotification implements Notification {
+    private NotificationTypes notificationType;
+    private int notifiedID;
+    private int notifierID;
+    private int notificationID;
+    private int campaignID;
+    private LocalDateTime startDate;
+    private LocalTime timeSession;
+    private transient Calendar service;
+    private String city;
+    private String userEmail;
+    private String freq;
+    private String frequenceString="";
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LocalNotification.class.getName());
+    private static final String TIMEZONE = "Europe/Rome";
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    public LocalNotification(int notificationID, int notifierID, int notifiedID, NotificationTypes type, int campaignID){
+        this.notificationID=notificationID;
+        this.notifierID = notifierID;
+        this.notifiedID = notifiedID;
+        this.notificationType = type;
+        this.campaignID = campaignID;
+    }
+
+    public void setupReminder() throws IOException{
+
+        Event reminder = new Event();
+
+        CampaignDAO campaignDAO = DaoFactory.getFactory().createCampaignDAO();
+        ModelCampaign campaignModel=campaignDAO.getCampaignById(campaignID);
+        String campaignName= campaignModel.getCampName();
+        this.freq = campaignModel.getCampFreq();
+
+        reminder.setSummary("Sessione di "+ campaignName);
+        reminder.setLocation(city);
+
+        ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
+
+        attendees.add(new EventAttendee().setEmail(userEmail));
+        reminder.setAttendees(attendees);
+
+        if (this.startDate == null) {
+            ModelCampaign camp = campaignDAO.getCampaignById(this.campaignID); // campaignId deve essere un attributo della classe
+            if (camp != null) {
+                this.startDate = camp.getCampStartDate();
+            }
+        }
+
+        ZoneId timeZone = ZoneId.of(TIMEZONE);
+        ZonedDateTime completeDate = startDate.atZone(timeZone);
+        String startingDate = completeDate.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+
+        DateTime start = DateTime.parseRfc3339(startingDate);
+        DateTime end = DateTime.parseRfc3339(startingDate);
+        reminder.setStart(new EventDateTime().setDateTime(start).setTimeZone(TIMEZONE));
+        reminder.setEnd(new EventDateTime().setDateTime(end).setTimeZone(TIMEZONE));
+
+        switch(freq){
+            case "settimanale":
+                frequenceString="RRULE:FREQ=WEEKLY";
+                break;
+            case "bisettimanale":
+                frequenceString="RRULE:FREQ=WEEKLY;INTERVAL=2";
+                break;
+            case "mensile":
+                frequenceString="RRULE:FREQ=MONTHLY";
+                break;
+            default:
+                throw new IllegalArgumentException("Frequenza non supportata: " + freq);
+        }
+        reminder.setRecurrence(Arrays.asList(frequenceString));
+
+        service.events().insert("primary", reminder).execute();
+    }
+
+
+    public void deleteReminder(String reminderID){
+        try {
+            service.events().delete("primary", reminderID).execute();
+        }
+        catch (IOException e){
+            logger.log(Level.SEVERE, "Problema di rete con Google! Impossibile creare il promemoria.", e);
+        }
     }
 
     //getter
     @Override
     public NotificationTypes getNotificationType(){
-        return notification_type;
+        return notificationType;
     }
 
     @Override
-    public int getNotifier_id(){
-        return notifier_id;
+    public int getNotifierID(){
+        return notifierID;
     }
 
     @Override
-    public int getNotified_id(){
-        return notified_id;
+    public int getNotifiedID(){
+        return notifiedID;
     }
 
     @Override
-    public int getNotification_ID(){
-        return notification_ID;
+    public int getNotificationID(){
+        return notificationID;
     }
 
     @Override
-    public UserTypes getNotifierType(){
-        return  notifier_type;
-    }
-    @Override
-    public UserTypes getNotifiedType(){
-        return notified_type;
+    public int getCampaignID(){
+        return campaignID;
     }
 
-    @Override
-    public int getCampaign_id(){
-        return campaign_id;
+    public LocalDateTime getStartDate(){
+        return startDate;
     }
+
+    public LocalTime getTimeSession(){
+        return timeSession;
+    }
+
+    public String getCity(){
+        return city;
+    }
+
+    public String getUserEmail(){
+        return userEmail;
+    }
+
+    public String getFrequency(){
+        return freq;
+    }
+
 
     //setter
     @Override
-    public void setNotificationType(NotificationTypes notification_type){
-        this.notification_type=notification_type;
+    public void setNotificationType(NotificationTypes notificationType){
+        this.notificationType = notificationType;
     }
 
     @Override
-    public void setNotifier_id(int notifier_id){
-        this.notifier_id = notifier_id;
+    public void setNotifierID(int notifierID){
+        this.notifierID = notifierID;
     }
 
     @Override
-    public void setNotified_id(int notified_id){
-        this.notified_id = notified_id;
+    public void setNotifiedID(int notifiedID){
+        this.notifiedID = notifiedID;
     }
 
     @Override
-    public void setNotification_ID(int notification_ID){
-        this.notification_ID = notification_ID;
+    public void setNotificationID(int notificationID){
+        this.notificationID = notificationID;
     }
 
     @Override
-    public void setNotifierType(UserTypes notifier_type){
-        this.notifier_type=notifier_type;
+    public void setCampaignID(int campaignID){
+        this.campaignID = campaignID;
     }
 
-    @Override
-    public void setNotifiedType(UserTypes notified_type){
-        this.notified_type=notified_type;
+    public void setStartDate(LocalDateTime startDate){
+        this.startDate=startDate;
     }
 
-    @Override
-    public void setCampaign_id(int campaign_id){
-        this.campaign_id=campaign_id;
+    public void setTimeSession(LocalTime timeSession){
+        this.timeSession=timeSession;
     }
+
+    public void setCity(String city){
+        this.city=city;
+    }
+
+    public void setUserEmail(String userEmail){
+        this.userEmail=userEmail;
+    }
+
+    public void setFrequency(String freq){
+        this.freq=freq;
+    }
+
+    public void setService(Calendar service){this.service = service;}
+
+
 }

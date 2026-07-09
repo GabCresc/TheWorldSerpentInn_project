@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="627.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GcRegister">
+<AnchorPane prefHeight="627.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GcGoogleRegister">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="42.0" prefWidth="602.0" text="World Serpent Inn" textOverrun="CLIP">
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="42.0" prefWidth="602.0" text="World Serpent Inn" textOverrun="CLIP">
          <font>
             <Font name="Eras Bold ITC" size="25.0" />
          </font>
@@ -27,9 +27,15 @@
             <Font name="Dubai Medium" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="registerButton" alignment="CENTER" defaultButton="true" layoutX="127.0" layoutY="441.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="26.0" prefWidth="342.0" text="Registrati" textAlignment="CENTER" wrapText="true" />
-      <ComboBox fx:id="roleMenu" layoutX="227.0" layoutY="237.0" prefWidth="150.0" />
-      <Button fx:id="gobackButton" layoutX="254.0" layoutY="514.0" mnemonicParsing="false" onAction="#goBackButton" text="Torna indietro" />
+      <ComboBox fx:id="roleMenu" layoutX="223.0" layoutY="237.0" prefWidth="150.0" />
+      <Button fx:id="goBackButton" layoutX="254.0" layoutY="502.0" mnemonicParsing="false" onAction="#goBackButton2" text="Torna indietro" />
       <TextArea fx:id="textfield" layoutX="160.0" layoutY="305.0" prefHeight="102.0" prefWidth="284.0" text="Scegli se registarti come Dungeon&#10;Master o come Player.&#10;Attenzione: se scegli l'opzione Dungeon Master,&#10;sarai in grado di creare &#10;ma non di partecipare a una campagna.&#10;" />
+      <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" layoutY="199.0" prefHeight="18.0" prefWidth="601.0" />
+      <Button fx:id="googleButton" layoutX="190.0" layoutY="434.0" mnemonicParsing="false" onAction="#registerWithGoogle" prefHeight="33.0" prefWidth="223.0" text="Registrati con Google" />
+      <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="199.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/googlelogo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

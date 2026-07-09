@@ -1,18 +1,32 @@
 package logic.model;
 
-import logic.utils.enums.Notification_Types;
-import logic.utils.enums.UserTypes;
+import javafx.event.ActionEvent;
+import logic.utils.enums.NotificationTypes;
 
-public interface Notification {
-    String getNotificationType();
-    String getNotifier_Name();
-    String getNotified_Name();
-    int getNotification_ID();
-    User_Types getUserType();
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.io.Serializable;
 
-    void setNotificationType(Notification_Types notification_type);
-    void setNotifier_Name(String notifier_name);
-    void setNotified_Name(String notified_name);
-    void setNotification_ID(int notification_ID);
-    void setUserType(User_Types user_type);
+public interface Notification extends Serializable{
+    NotificationTypes getNotificationType();
+    int getNotifierID();
+    int getNotifiedID();
+    int getNotificationID();
+    int getCampaignID();
+    LocalDateTime getStartDate();
+    LocalTime getTimeSession();
+    String getCity();
+    String getUserEmail();
+    String getFrequency();
+
+    void setNotificationType(NotificationTypes notificationType);
+    void setNotifierID(int notifierID);
+    void setNotifiedID(int notifiedID);
+    void setNotificationID(int notificationID);
+    void setCampaignID(int campaignID);
+    void setStartDate(LocalDateTime endDate);
+    void setTimeSession (LocalTime timeSession);
+    void setCity(String city);
+    void setUserEmail(String email);
+    void setFrequency(String frequency);
 }

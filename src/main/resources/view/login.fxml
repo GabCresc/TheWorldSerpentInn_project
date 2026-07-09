@@ -1,13 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="545.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GcLogin">
+   <children>
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="42.0" prefWidth="602.0" text="World Serpent Inn" textOverrun="CLIP">
+         <font>
+            <Font name="Eras Bold ITC" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="84.0" fitWidth="98.0" layoutX="252.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="92.0" fitWidth="123.0" layoutX="254.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/imm.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="253.0" layoutY="142.0" prefHeight="30.0" prefWidth="92.0" text="Accedi">
+         <font>
+            <Font name="Dubai Medium" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="emailField" layoutX="128.0" layoutY="204.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="132.0" layoutY="186.0" prefHeight="18.0" prefWidth="92.0" text="Username/Email" />
+      <PasswordField fx:id="passwordField" layoutX="128.0" layoutY="255.0" prefHeight="26.0" prefWidth="342.0" />
+      <Label layoutX="128.0" layoutY="237.0" text="Password" />
+      <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" layoutX="130.0" layoutY="346.0" mnemonicParsing="false" onAction="#loginStandard" prefHeight="26.0" prefWidth="342.0" text="Accedi" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="279.0" layoutY="386.0" opacity="0.29" text="OPPURE" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" />
+      <Button fx:id="googleButton" layoutX="196.0" layoutY="410.0" mnemonicParsing="false" onAction="#loginGoogle" prefHeight="33.0" prefWidth="223.0" text="Accedi con Google" />
+      <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="203.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/googlelogo.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="184.0" layoutY="453.0" prefHeight="18.0" prefWidth="138.0" text="Non hai un account?" />
+      <ImageView fitHeight="18.0" fitWidth="17.0" layoutX="446.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/emailicon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="18.0" fitWidth="17.0" layoutX="446.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/passwordicon.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="registerLink" layoutX="311.0" layoutY="450.0" onAction="#registerHere" prefHeight="24.0" prefWidth="78.0" text="Registrati qui" underline="true" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="1.0" layoutY="317.0" prefHeight="18.0" prefWidth="601.0" textAlignment="CENTER" />
+   </children>
 </AnchorPane>
