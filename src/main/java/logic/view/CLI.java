@@ -36,7 +36,8 @@ public class CLI {
     private static final String ONLINE = "online";
     private static final String OFFLINE = "offline";
     private static final String PASSWORD = "Inserisci password: ";
-    private static final String[] COMMANDS_LIST = {HELP, "/home", "/viewcampaigns", "/createcampaign", "/login", "/logout", "/viewnotifications", "/registration"};
+    private static final String[] COMMANDS_LIST = {HELP, "/home", "/viewcampaigns", "/createcampaign", "/login", "/logout", "/viewnotifications", "/registration", "/exit"};
+    private static boolean execution = true;
 
     private static final Logger logger = Logger.getLogger(CLI.class.getName());
     public static final Scanner scanner = new Scanner(System.in);
@@ -99,7 +100,7 @@ public class CLI {
     public static void main(String[] args) {
         loadHomePage();
         String waitingCommand = null;
-        while (true) {
+        while (execution) {
             try {
                 String input;
                 if (waitingCommand != null) {
@@ -109,7 +110,7 @@ public class CLI {
                     System.out.print("Inserisci comando: ");
                     input = readInput();
                 }
-                handleCommand(input);
+                 handleCommand(input);
             } catch (CommandSignalException e) {
                 waitingCommand = e.getCommand();
             } catch (InvalidValueException | UsernameTaken | TextTooLongException e) {
@@ -165,6 +166,9 @@ public class CLI {
                 break;
             case "/viewnotifications":
                 loadNotifications();
+                break;
+            case "/exit":
+                execution = false;
                 break;
             default:
                 System.out.print("Inserisci un comando valido (scrivi /help per la lista con tutti i comandi)");
@@ -911,4 +915,5 @@ public class CLI {
         return new BeanUser(user);
 
     }
+
 }
