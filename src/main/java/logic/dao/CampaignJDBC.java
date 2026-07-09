@@ -1,7 +1,5 @@
 package logic.dao;
 
-import logic.exceptions.InvalidValueException;
-import logic.exceptions.TextTooLongException;
 import logic.model.ModelCampaign;
 import logic.utils.SingletonDBSession;
 import java.sql.SQLException;
@@ -24,21 +22,20 @@ public class CampaignJDBC implements CampaignDAO {
     // apro la connessione con il database per recuperare le campagne disponibili
     public List<ModelCampaign> retrieveCampaigns() { //ok
         List<ModelCampaign> list = new ArrayList<>();
-        try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT campaign.*, COUNT(campaign_request.playerID) as currentPlayers " +
-                    "FROM campaign LEFT JOIN campaign_request ON campaign.campaignID = campaign_request.campaignID AND campaign_request.status = 'ACCEPTED' " +
-                    "GROUP BY campaign.campaignID");
+        String query = "SELECT campaign.*, COUNT(campaign_request.playerID) as currentPlayers " +
+                "FROM campaign LEFT JOIN campaign_request ON campaign.campaignID = campaign_request.campaignID AND campaign_request.status = 'ACCEPTED' " +
+                "GROUP BY campaign.campaignID";
+        try (Connection conn = SingletonDBSession.getInstance().startConnection(); Statement statement = conn.createStatement();ResultSet rs = statement.executeQuery(query);) {
 
             // Con questa query andiamo a selezionare tutte le colonne di campaign, contiamo il numero di righe associate a PlayerID (che chiamiamo current_players
             // dopodiché prendiamo tutte le colonne di campaign (LEFT) che uniamo a quelle di campaign_request che hanno lo stesso campaignID e che hanno come status
             // ACCEPTED. Infine raggruppiamo per campaignID
 
-            while(rs.next()){
+            while (rs.next()) {
                 int maxPlayers = rs.getInt("max_players");
                 int currentPlayers = rs.getInt("currentPlayers");
 
-                if(maxPlayers > currentPlayers) {
+                if (maxPlayers > currentPlayers) {
 
                     ModelCampaign camp = mapResult(rs);
                     list.add(camp);
@@ -46,16 +43,17 @@ public class CampaignJDBC implements CampaignDAO {
                 }
             }
 
-        } catch (SQLException e){
-            logger.log(Level.SEVERE, "Exception occurred while retrieving campaigns", e); }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Exception occurred while retrieving campaigns", e);
+        }
         return list;
     }
 
     @Override
     public boolean addCampaign(ModelCampaign camp){ //ok
-        try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO campaign (name, max_players, userID, time_session, mode, city, " +
-                    "start_date, frequency, platform) VALUES (?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        String query = "INSERT INTO campaign (name, max_players, userID, time_session, mode, city, " +
+                "start_date, frequency, platform) VALUES (?,?,?,?,?,?,?,?,?)";
+        try(Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
 
             ps.setString(1, camp.getCampName());
             ps.setInt(2, camp.getMaxPlayers());
@@ -86,8 +84,9 @@ public class CampaignJDBC implements CampaignDAO {
 
     @Override
     public void deleteCampaign(int campaignID){ //ok
-        try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM campaign WHERE campaignID = ?");
+        String query = "DELETE FROM campaign WHERE campaignID = ?";
+        try(Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
             ps.setInt(1, campaignID);
             ps.executeUpdate();
         }catch(SQLException e){
@@ -136,9 +135,8 @@ public class CampaignJDBC implements CampaignDAO {
 
     @Override
     public ModelCampaign getCampaignById(int campaignID){ //ok
-
-        try(Connection conn = SingletonDBSession.getInstance().startConnection()){
-            PreparedStatement ps = conn.prepareStatement(("SELECT campaignID, name, max_players, userID, time_session, mode, city, start_date, frequency, platform FROM campaign WHERE campaignID = ?"));
+        String query ="SELECT campaignID, name, max_players, userID, time_session, mode, city, start_date, frequency, platform FROM campaign WHERE campaignID = ?";
+        try(Connection conn = SingletonDBSession.getInstance().startConnection(); PreparedStatement ps = conn.prepareStatement(query)){
             ps.setInt(1, campaignID);
             try(ResultSet rs = ps.executeQuery()){
                 if(rs.next()){
