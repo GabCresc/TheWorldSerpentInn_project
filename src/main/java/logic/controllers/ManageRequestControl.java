@@ -78,26 +78,4 @@ public class ManageRequestControl {
         }
         return false;
     }
-    public void simulationReminder(BeanCampaign campBean, String emailDiTest) {
-        logger.log(Level.INFO, "Starting reminder simulation...");
-
-        try {
-            LocalNotification reminder = new LocalNotification(
-                    999,
-                    campBean.getCampDMID(),
-                    777, // ID player finto
-                    NotificationTypes.REMINDER,
-                    campBean.getCampId()
-            );
-            LoginGoogleControl loginGoogleControl = new LoginGoogleControl();
-            Calendar googleCalendar = loginGoogleControl.getCalendarService();
-            reminder.setService(googleCalendar);
-            reminder.setUserEmail(emailDiTest);
-            reminder.setupReminder();
-
-            logger.log(Level.INFO, "Google Calendar configured for {0}", emailDiTest);
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Something went wrong with the simulation", e);
-        }
-    }
 }
