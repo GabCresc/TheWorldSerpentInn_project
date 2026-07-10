@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
  class LoginControlTest {
 
-    private final Logger logger = Logger.getLogger(LoginControlTest.class.getName());
+
     @Mock
     private UserDAO userDAO; //in questo modo non sporchiamo il database
 
