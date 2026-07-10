@@ -41,15 +41,20 @@ public class ManageRequestControl {
                     logger.log(Level.INFO, "Player moved to accepted players for the view.");
                 }
 
-                int dummyID = 0; // l'evento su Google o la notifica nel DB potrebbero non avere un'ID
-                LocalNotification reminder = new LocalNotification(dummyID, beanCampaign.getCampDMID(), beanUser.getUserID(), NotificationTypes.REMINDER, beanCampaign.getCampId());
-                LoginGoogleControl loginGoogleControl = new LoginGoogleControl();
-                Calendar googleCalendar = loginGoogleControl.getCalendarService();
-                reminder.setService(googleCalendar);
-                reminder.setUserEmail(beanUser.getEmail());
-                reminder.setupReminder();
-                logger.log(Level.INFO, "Google Calendar Reminder sent!");
-                return true;
+                if(beanUser.getPassword() == null) {
+
+                    int dummyID = 0; // l'evento su Google o la notifica nel DB potrebbero non avere un'ID
+                    LocalNotification reminder = new LocalNotification(dummyID, beanCampaign.getCampDMID(), beanUser.getUserID(), NotificationTypes.REMINDER, beanCampaign.getCampId());
+                    LoginGoogleControl loginGoogleControl = new LoginGoogleControl();
+                    Calendar googleCalendar = loginGoogleControl.getCalendarService();
+                    reminder.setService(googleCalendar);
+                    reminder.setUserEmail(beanUser.getEmail());
+                    reminder.setupReminder();
+                    logger.log(Level.INFO, "Google Calendar Reminder sent!");
+                    return true;
+                }else{
+                    return true;
+                }
 
             } else {
                 logger.log(Level.INFO, "There was a problem while sending Google Calendar Reminder");
@@ -78,4 +83,5 @@ public class ManageRequestControl {
         }
         return false;
     }
+
 }
