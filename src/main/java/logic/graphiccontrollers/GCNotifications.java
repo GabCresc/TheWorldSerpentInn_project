@@ -137,8 +137,8 @@ public class GCNotifications extends EssentialGUI implements Observer {
                     case CAMPAIGN_ADDED:
                         title = "Campagna creata";
                         description = "La campagna " + campaignName + " è stata appena creata e sei stato invitato a parteciparvi.";
-                        acceptButtons.get(i).setText("Segna come letto");
-                        rejectButtons.get(i).setVisible(false);
+                        acceptButtons.get(i).setText("Accetta");
+                        rejectButtons.get(i).setText("Rifiuta");
                         break;
 
                     case REQUEST_PARTICIPATION:
@@ -240,12 +240,23 @@ public class GCNotifications extends EssentialGUI implements Observer {
     @FXML
     private void removeNotification(int indexNotification, boolean accepting){
         Notification currentNotif = myNotifications.get(indexNotification);
-        if((currentNotif.getNotificationType() == NotificationTypes.REQUEST_PARTICIPATION)){
+        if((currentNotif.getNotificationType() == NotificationTypes.REQUEST_PARTICIPATION ||
+                currentNotif.getNotificationType() == NotificationTypes.CAMPAIGN_ADDED)){
             //recuperiamo la campagna
             ModelCampaign modelCampaign = campaignDAO.getCampaignById(currentNotif.getCampaignID());
             BeanCampaign beanCampaign = new BeanCampaign(modelCampaign);
+
+            int target;
+            if (currentNotif.getNotificationType() == NotificationTypes.REQUEST_PARTICIPATION) {
+                // usiamo il notifierID perché in questo caso è il giocatore che ha mandato la notifica
+                target = currentNotif.getNotifierID();
+            } else {
+                // per l'invito, siamo interessati all'utente loggato
+                target = SingletonLoggedUser.getInstance().getUserID();
+            }
+
             //recuperiamo l'utente
-            User user = userDAO.retrieveUserByUserID(currentNotif.getNotifierID());
+            User user = userDAO.retrieveUserByUserID(target);
             BeanUser beanUser = new BeanUser(user);
 
             ManageRequestControl manageRequestControl = new ManageRequestControl();
