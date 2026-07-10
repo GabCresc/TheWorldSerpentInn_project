@@ -1,5 +1,6 @@
 package logic.controllers;
 
+import com.google.api.client.http.MultipartContent;
 import logic.beans.BeanCampaign;
 import logic.controllers.abstract_factory_dao.DaoFactory;
 import logic.dao.ParticipationDAO;
@@ -75,7 +76,7 @@ public class CreateCampaignControl {
             if (notifiedUser != null) {
                 int notifiedID = notifiedUser.getUserID();
 
-                try{
+                try {
                     ParticipationDAO pDao = DaoFactory.getFactory().createParticipationDAO();
                     pDao.addWaitingPlayer(notifiedID, campaignID);
                 } catch (RequestAlreadySent e) {
