@@ -19,7 +19,6 @@
             <children>
                 <Pane layoutX="193.0" layoutY="45.0" prefHeight="603.0" prefWidth="943.0" style="-fx-background-color: white;">
                     <children>
-                        <Label fx:id="notificationsNotFound" layoutX="309.0" layoutY="331.0" prefHeight="17.0" prefWidth="326.0" />
                         <ImageView fx:id="arrowDown" fitHeight="30.0" fitWidth="29.0" layoutX="894.0" layoutY="498.0" onMouseClicked="#nextNotifs">
                             <image>
                                 <Image url="@../icons/Arrow.png" />
@@ -87,6 +86,11 @@
                         <Font name="Bookman Old Style" size="18.0" />
                      </font>
                   </Label>
+                        <Label fx:id="notificationsNotFound" layoutX="331.0" layoutY="28.0" prefHeight="30.0" prefWidth="326.0" style="-fx-text-fill: green;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                     </children></Pane>
             </children></Pane>
         <Hyperlink fx:id="title" layoutX="126.0" onAction="#showHomePage" prefHeight="94.0" prefWidth="597.0" style="-fx-text-fill: black; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-underline: false;" text="World Serpent Inn">
@@ -108,10 +112,14 @@
                 <MenuItem fx:id="logoutItem" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
             </items>
         </MenuButton>
-      <ImageView fx:id="notificationIcon" fitHeight="27.0" fitWidth="29.0" layoutX="1136.0" layoutY="56.0" onMouseClicked="#loadNotifications">
-         <image>
-            <Image url="@../icons/notification.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="button" layoutX="1139.0" layoutY="58.0" mnemonicParsing="false" onAction="#loadNotifications" prefHeight="18.0" prefWidth="22.0" style="-fx-background-color: transparent; -fx-padding: 0;">
+         <graphic>
+            <ImageView fx:id="notificationIcon" fitHeight="27.0" fitWidth="29.0" onMouseClicked="#loadNotifications">
+               <image>
+                  <Image url="@../icons/notification.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>

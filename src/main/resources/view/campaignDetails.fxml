@@ -145,10 +145,14 @@
                 <MenuItem fx:id="logoutItem" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
             </items>
         </MenuButton>
-        <ImageView fx:id="notificationIcon" fitHeight="27.0" fitWidth="29.0" layoutX="1136.0" layoutY="56.0" onMouseClicked="#loadNotifications">
-            <image>
-                <Image url="@../icons/notification.png" />
-            </image>
-        </ImageView>
+      <Button fx:id="button" layoutX="1139.0" layoutY="60.0" mnemonicParsing="false" onAction="#loadNotifications" prefHeight="18.0" prefWidth="22.0" style="-fx-background-color: transparent; -fx-padding: 0;">
+         <graphic>
+              <ImageView fx:id="notificationIcon" fitHeight="27.0" fitWidth="29.0" onMouseClicked="#loadNotifications">
+                  <image>
+                      <Image url="@../icons/notification.png" />
+                  </image>
+              </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>
