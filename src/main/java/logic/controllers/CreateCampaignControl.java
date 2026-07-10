@@ -2,9 +2,12 @@ package logic.controllers;
 
 import logic.beans.BeanCampaign;
 import logic.controllers.abstract_factory_dao.DaoFactory;
+import logic.dao.ParticipationDAO;
 import logic.dao.UserDAO;
+import logic.exceptions.RequestAlreadySent;
 import logic.model.ModelCampaign;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.dao.CampaignDAO;
 import logic.beans.BeanUser;
@@ -71,6 +74,14 @@ public class CreateCampaignControl {
         for (BeanUser notifiedUser : userList) {
             if (notifiedUser != null) {
                 int notifiedID = notifiedUser.getUserID();
+
+                try{
+                    ParticipationDAO pDao = DaoFactory.getFactory().createParticipationDAO();
+                    pDao.addWaitingPlayer(notifiedID, campaignID);
+                } catch (RequestAlreadySent e) {
+                    // Se era già stato aggiunto in qualche modo, ignoriamo o logghiamo
+                    logger.log(Level.WARNING, "L'utente ha già una richiesta in sospeso.", e);
+                }
                 notiControl.sendServerNotification(
                         NotificationTypes.CAMPAIGN_ADDED,
                         notifierID,
