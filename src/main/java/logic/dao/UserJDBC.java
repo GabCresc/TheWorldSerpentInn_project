@@ -163,7 +163,7 @@ public class UserJDBC implements UserDAO {
     @Override
     public User retrieveUserByUsername(String username) {
         User user = null;
-        String query = "SELECT userID, username, user_type, email  FROM user_data WHERE username = ?";
+        String query = "SELECT userID, username, password, user_type, email  FROM user_data WHERE username = ?";
         SingletonDBSession session = SingletonDBSession.getInstance();
         try (Connection conn = session.startConnection();  PreparedStatement ps = conn.prepareStatement(query)) {
 
@@ -182,7 +182,7 @@ public class UserJDBC implements UserDAO {
     @Override
     public User retrieveUserByUserID(int userID){
         User user = null;
-        String query = "SELECT userID, username, user_type, email FROM user_data WHERE userID = ?";
+        String query = "SELECT userID, username, password, user_type, email FROM user_data WHERE userID = ?";
         SingletonDBSession session = SingletonDBSession.getInstance();
         try(Connection conn = session.startConnection(); PreparedStatement ps = conn.prepareStatement(query)){
 
@@ -203,6 +203,7 @@ public class UserJDBC implements UserDAO {
             user.setUsername(rs.getString(USERNAME));
             user.setUserID(rs.getInt(USERID));
             user.setEmail(rs.getString(EMAIL));
+            user.setPassword(rs.getString("password"));
 
             String typeString = rs.getString(TYPE);
             if (typeString != null) {
