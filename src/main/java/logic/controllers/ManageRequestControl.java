@@ -41,7 +41,7 @@ public class ManageRequestControl {
                     logger.log(Level.INFO, "Player moved to accepted players for the view.");
                 }
 
-                if(beanUser.getPassword() == null) {
+                if(beanUser.getPassword() == null || beanUser.getPassword().isEmpty()) {
 
                     int dummyID = 0; // l'evento su Google o la notifica nel DB potrebbero non avere un'ID
                     LocalNotification reminder = new LocalNotification(dummyID, beanCampaign.getCampDMID(), beanUser.getUserID(), NotificationTypes.REMINDER, beanCampaign.getCampId());
